@@ -5,8 +5,13 @@
 //  Created by Dale Christian Seen on 3/5/19.
 //  Copyright © 2019 Dale Christian Seen. All rights reserved.
 //
+//  Note: Some of the code in this file are taken from
+//  https://developer.apple.com/documentation/usernotifications/
+//  And
+//  https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SchedulingandHandlingLocalNotifications.html#//apple_ref/doc/uid/TP40008194-CH5-SW5
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,7 +45,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
