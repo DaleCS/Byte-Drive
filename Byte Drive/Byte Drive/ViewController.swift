@@ -9,12 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
+    var usernameInput: String = String()
+    var passwordInput: String = String()
+    
+    
+    @IBAction func pressLogin(_ sender: UIButton) {
+        // Demonstrate UIKit is used
+        usernameInput = usernameField.text!
+        passwordInput = passwordField.text!
+        print(usernameInput)
+        print(passwordInput)
     }
-
-
 }
 
