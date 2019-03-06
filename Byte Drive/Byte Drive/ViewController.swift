@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Byte Drive
 //
-//  Created by Dale Christian Seen on 3/5/19.
-//  Copyright © 2019 Dale Christian Seen. All rights reserved.
+//  Created by Byte-Me Team on 3/5/19.
+//  Copyright © 2019 Byte-Me. All rights reserved.
 //
 //  Note: Some of the code in this file are taken from
 //  https://developer.apple.com/documentation/usernotifications/
