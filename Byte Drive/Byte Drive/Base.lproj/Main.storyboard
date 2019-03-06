@@ -155,12 +155,12 @@
                                     <navigationItem title="Upload" id="oIg-Wv-uRB">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="trash" id="OYk-t7-ZMq">
                                             <connections>
-                                                <action selector="trashButton:" destination="SS1-8T-1Mv" id="p4j-OE-1H5"/>
+                                                <action selector="trashButton:" destination="SS1-8T-1Mv" id="GIa-GM-hzW"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="Rlw-Rv-5E5">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Rlw-Rv-5E5">
                                             <connections>
-                                                <action selector="donePost:" destination="SS1-8T-1Mv" id="f59-db-mID"/>
+                                                <action selector="donePost:" destination="SS1-8T-1Mv" id="UhB-OS-UJE"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

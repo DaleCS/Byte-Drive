@@ -7,19 +7,26 @@
 //
 
 import UIKit
+import Firebase
 
 class UploadViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
     
+    var ref:DatabaseReference!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference()
 
         // Do any additional setup after loading the view.
     }
     
     @IBAction func donePost(_ sender: Any) {
+        
+        ref?.child("Uploads").childByAutoId().setValue("Testing Firebase")
         
         presentedViewController?.dismiss(animated: true, completion: nil)
     }
