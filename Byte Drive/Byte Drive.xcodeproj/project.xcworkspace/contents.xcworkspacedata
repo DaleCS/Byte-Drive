@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Byte Drive.xcodeproj">
+      location = "group:/Users/jon-jon/Documents/GitHub/Byte-Drive/Byte Drive/Byte Drive/GoogleService-Info.plist">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
