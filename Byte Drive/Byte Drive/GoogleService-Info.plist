@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>539293837392-j7ieq4tf3h5rbd45hr5map7fq86jdeda.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.539293837392-j7ieq4tf3h5rbd45hr5map7fq86jdeda</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAUlRRvklh35Fi_7cJ2ALWSbx7tgLv4yLU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>539293837392</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>DCS.CMPE137.ByteMe.Byte-Drive</string>
+	<key>PROJECT_ID</key>
+	<string>byte-drive</string>
+	<key>STORAGE_BUCKET</key>
+	<string>byte-drive.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:539293837392:ios:8b73deb46aa16213</string>
+	<key>DATABASE_URL</key>
+	<string>https://byte-drive.firebaseio.com</string>
+</dict>
+</plist>
