@@ -9,6 +9,8 @@
 //  https://developer.apple.com/documentation/usernotifications/
 //  And
 //  https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SchedulingandHandlingLocalNotifications.html#//apple_ref/doc/uid/TP40008194-CH5-SW5
+//  And
+//  From Youtube video by user CodeWithChris: https://www.youtube.com/watch?v=jJUm1VBnR_U
 
 import UIKit
 import UserNotifications
