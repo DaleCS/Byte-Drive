@@ -11,6 +11,7 @@
 //  https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SchedulingandHandlingLocalNotifications.html#//apple_ref/doc/uid/TP40008194-CH5-SW5
 
 import UIKit
+import Firebase
 import UserNotifications
 import UserNotificationsUI
 
@@ -19,14 +20,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
-    var usernameInput: String = String()
-    var passwordInput: String = String()
-    
-    
     @IBAction func pressLogin(_ sender: UIButton) {
-        
+        Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!) {
+            (user, error) in
+            if (error != nil) {
+                print("Found errors: \(error!)")
+            } else {
+                print("Successfully signed in")
+                self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
+            }
+        }
     }
     
+    /*
     @IBAction func pressNotifications(_ sender: UIButton) {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound])
@@ -51,4 +57,5 @@ class ViewController: UIViewController {
             }
         }
     }
+    */
 }

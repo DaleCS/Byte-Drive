@@ -15,7 +15,8 @@ target 'Byte Drive' do
 
   # Pods for Byte Drive
 
-  pod 'Firebase/Core'
+  pod 'Firebase'
+  pod 'Firebase/Auth'
   pod 'Firebase/Database'
 
 end
