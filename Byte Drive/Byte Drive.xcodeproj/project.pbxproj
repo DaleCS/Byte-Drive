@@ -18,6 +18,7 @@
 		53DC8A3F222F972400AD1D50 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC8A3E222F972400AD1D50 /* NotificationViewController.swift */; };
 		53DC8A42222F972400AD1D50 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC8A40222F972400AD1D50 /* MainInterface.storyboard */; };
 		53DC8A46222F972400AD1D50 /* BTNotifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 53DC8A37222F972400AD1D50 /* BTNotifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		53F937A9225D460C003A9095 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F937A8225D460C003A9095 /* RegisterViewController.swift */; };
 		BC536F22222FC0C300EE6998 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC536F21222FC0C300EE6998 /* HomeViewController.swift */; };
 		BC536F24222FC11300EE6998 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC536F23222FC11300EE6998 /* UploadViewController.swift */; };
 		BC536F26222FCED400EE6998 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC536F25222FCED400EE6998 /* GoogleService-Info.plist */; };
@@ -64,6 +65,7 @@
 		53DC8A3E222F972400AD1D50 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		53DC8A41222F972400AD1D50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		53DC8A43222F972400AD1D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53F937A8225D460C003A9095 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		603AB902188BC25818933DBE /* Pods-BTNotifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTNotifications.debug.xcconfig"; path = "Target Support Files/Pods-BTNotifications/Pods-BTNotifications.debug.xcconfig"; sourceTree = "<group>"; };
 		BC536F21222FC0C300EE6998 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		BC536F23222FC11300EE6998 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				5358F6E8222F4F3E00DAA52C /* Assets.xcassets */,
 				5358F6EA222F4F3E00DAA52C /* LaunchScreen.storyboard */,
 				5358F6ED222F4F3E00DAA52C /* Info.plist */,
+				53F937A8225D460C003A9095 /* RegisterViewController.swift */,
 			);
 			path = "Byte Drive";
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5358F6E4222F4F3D00DAA52C /* ViewController.swift in Sources */,
+				53F937A9225D460C003A9095 /* RegisterViewController.swift in Sources */,
 				BC536F24222FC11300EE6998 /* UploadViewController.swift in Sources */,
 				5358F6E2222F4F3D00DAA52C /* AppDelegate.swift in Sources */,
 				BC536F22222FC0C300EE6998 /* HomeViewController.swift in Sources */,

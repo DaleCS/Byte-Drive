@@ -24,11 +24,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func pressLogin(_ sender: UIButton) {
-        // Demonstrate UIKit is used and is working.
-        usernameInput = usernameField.text!
-        passwordInput = passwordField.text!
-        print(usernameInput)
-        print(passwordInput)
+        
     }
     
     @IBAction func pressNotifications(_ sender: UIButton) {
