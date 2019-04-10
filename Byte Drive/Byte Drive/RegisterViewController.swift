@@ -21,8 +21,7 @@ class RegisterViewController: UIViewController {
         Auth.auth().createUser(withEmail: usernameTextField.text!, password: passwordTextField.text!) {
             (user, error) in
                 if (error != nil) {
-                    // Do something if there are errors
-                    print("Found errors: \(error!)")
+                    print("Errors found: \(error)")
                 } else {
                     print("Registration Successful")
                     self.performSegue(withIdentifier: "goToHomeFromRegister", sender: self)
