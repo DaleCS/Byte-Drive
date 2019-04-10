@@ -33,41 +33,61 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func pressLogin(_ sender: UIButton) {
-        Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!) {
-            (user, error) in
-            
-            self.usernameField.endEditing(true)
-            self.passwordField.endEditing(true)
-            if (error != nil) {
-                let errCode = AuthErrorCode(rawValue: error!._code)!
-                print("Error: \(errCode)")
-                switch (errCode) {
-                case .wrongPassword:
-                    UIView.animate(withDuration: 0.5) {
-                        self.passwordField.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-                        self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
-                        self.view.layoutIfNeeded()
+        usernameField.endEditing(true)
+        passwordField.endEditing(true)
+        if (usernameField.text?.isEmpty ?? true && usernameField.text?.isEmpty ?? true) {
+            UIView.animate(withDuration: 0.5) {
+                self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                self.passwordField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                self.view.layoutIfNeeded()
+            }
+        } else if (usernameField.text?.isEmpty ?? true) {
+            UIView.animate(withDuration: 0.5) {
+                self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                self.view.layoutIfNeeded()
+            }
+        } else if (passwordField.text?.isEmpty ?? true) {
+            UIView.animate(withDuration: 0.5) {
+                self.passwordField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!) {
+                (user, error) in
+                if (error != nil) {
+                    let errCode = AuthErrorCode(rawValue: error!._code)!
+                    switch (errCode) {
+                    case .wrongPassword:
+                        UIView.animate(withDuration: 0.5) {
+                            self.passwordField.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+                            self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                            self.view.layoutIfNeeded()
+                        }
+                    case .invalidEmail:
+                        UIView.animate(withDuration: 0.5) {
+                            self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                            self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                            self.view.layoutIfNeeded()
+                        }
+                    case .userNotFound:
+                        UIView.animate(withDuration: 0.5) {
+                            self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                            self.passwordField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                            self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                            self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                            self.view.layoutIfNeeded()
+                        }
+                    default:
+                        print("Unhandled error: \(error!)")
                     }
-                case .invalidEmail:
-                    UIView.animate(withDuration: 0.5) {
-                        self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
-                        self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
-                        self.view.layoutIfNeeded()
-                    }
-                case .userNotFound:
-                    UIView.animate(withDuration: 0.5) {
-                        self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
-                        self.passwordField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
-                        self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
-                        self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
-                        self.view.layoutIfNeeded()
-                    }
-                default:
-                    print("Unhandled error: \(error!)")
+                } else {
+                    print("Successfully signed in")
+                    self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
                 }
-            } else {
-                print("Successfully signed in")
-                self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
             }
         }
     }
