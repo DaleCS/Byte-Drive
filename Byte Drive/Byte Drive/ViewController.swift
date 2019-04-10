@@ -16,34 +16,88 @@ import UserNotifications
 import UserNotificationsUI
 import GoogleSignIn
 
-class ViewController: UIViewController, GIDSignInUIDelegate {
+class ViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     var userdefault = UserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        usernameField.delegate = self
+        passwordField.delegate = self
+
         GIDSignIn.sharedInstance().uiDelegate = self
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         if userdefault.bool(forKey: "usersignin"){
             performSegue(withIdentifier: "toHomeFromLogin", sender: self)
         }
     }
     
-    @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.5) {
+            textField.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            textField.backgroundColor = #colorLiteral(red: 0.3053061664, green: 0.2611849308, blue: 0.6665206552, alpha: 1)
+            self.view.layoutIfNeeded()
+        }
+    }
     
     @IBAction func pressLogin(_ sender: UIButton) {
-        Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!) {
-            (user, error) in
-            if (error == nil) {
-                print("Successfully signed in")
-                self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
-            } else {
-                print("Found errors: \(error!)")
+        usernameField.endEditing(true)
+        passwordField.endEditing(true)
+        if (usernameField.text?.isEmpty ?? true && usernameField.text?.isEmpty ?? true) {
+            UIView.animate(withDuration: 0.5) {
+                self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                self.passwordField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                self.view.layoutIfNeeded()
+            }
+        } else if (usernameField.text?.isEmpty ?? true) {
+            UIView.animate(withDuration: 0.5) {
+                self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                self.view.layoutIfNeeded()
+            }
+        } else if (passwordField.text?.isEmpty ?? true) {
+            UIView.animate(withDuration: 0.5) {
+                self.passwordField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!) {
+                (user, error) in
+                if (error != nil) {
+                    let errCode = AuthErrorCode(rawValue: error!._code)!
+                    switch (errCode) {
+                    case .wrongPassword:
+                        UIView.animate(withDuration: 0.5) {
+                            self.passwordField.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+                            self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                            self.view.layoutIfNeeded()
+                        }
+                    case .invalidEmail:
+                        UIView.animate(withDuration: 0.5) {
+                            self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                            self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                            self.view.layoutIfNeeded()
+                        }
+                    case .userNotFound:
+                        UIView.animate(withDuration: 0.5) {
+                            self.usernameField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                            self.passwordField.backgroundColor = #colorLiteral(red: 0.8790461421, green: 0.277841419, blue: 0.248211205, alpha: 1)
+                            self.usernameField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                            self.passwordField.textColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+                            self.view.layoutIfNeeded()
+                        }
+                    default:
+                        print("Unhandled error: \(error!)")
+                    }
+                } else {
+                    print("Successfully signed in")
+                    self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
+                }
             }
         }
     }
