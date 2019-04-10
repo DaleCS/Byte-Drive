@@ -26,7 +26,7 @@ class UploadViewController: UIViewController {
     
     @IBAction func donePost(_ sender: Any) {
         
-        ref?.child("Uploads").childByAutoId().setValue("Testing Firebase")
+        ref?.child("Uploads").childByAutoId().setValue(textView.text)
         
         presentedViewController?.dismiss(animated: true, completion: nil)
     }
