@@ -9,6 +9,8 @@
 //  https://developer.apple.com/documentation/usernotifications/
 //  And
 //  https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SchedulingandHandlingLocalNotifications.html#//apple_ref/doc/uid/TP40008194-CH5-SW5
+//  And
+//  
 
 import UIKit
 import Firebase
@@ -17,6 +19,10 @@ import UserNotificationsUI
 import GoogleSignIn
 
 class ViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
+    
+    
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     var userdefault = UserDefaults()
     
