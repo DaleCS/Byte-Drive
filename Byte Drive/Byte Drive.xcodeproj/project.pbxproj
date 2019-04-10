@@ -100,6 +100,7 @@
 		5358F6D5222F4F3D00DAA52C = {
 			isa = PBXGroup;
 			children = (
+				BCAE9FAE225DB917003ED7FC /* Supporting Files */,
 				5358F6E0222F4F3D00DAA52C /* Byte Drive */,
 				53DC8A3D222F972400AD1D50 /* BTNotifications */,
 				53DC8A38222F972400AD1D50 /* Frameworks */,
@@ -120,7 +121,6 @@
 		5358F6E0222F4F3D00DAA52C /* Byte Drive */ = {
 			isa = PBXGroup;
 			children = (
-				BC536F25222FCED400EE6998 /* GoogleService-Info.plist */,
 				5358F6E1222F4F3D00DAA52C /* AppDelegate.swift */,
 				5358F6E3222F4F3D00DAA52C /* ViewController.swift */,
 				5358F6E5222F4F3D00DAA52C /* Main.storyboard */,
@@ -166,6 +166,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BCAE9FAE225DB917003ED7FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC536F25222FCED400EE6998 /* GoogleService-Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,6 +187,7 @@
 				5358F6DC222F4F3D00DAA52C /* Resources */,
 				53DC8A4A222F972400AD1D50 /* Embed App Extensions */,
 				F0533C87E4C9EED178A6569C /* [CP] Embed Pods Frameworks */,
+				4180037543FEA499D5545DF3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,6 +277,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4180037543FEA499D5545DF3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Byte Drive/Pods-Byte Drive-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Byte Drive/Pods-Byte Drive-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7EAABFD5487031FD16B35B0A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,8 +352,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Byte Drive/Pods-Byte Drive-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -330,8 +364,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);

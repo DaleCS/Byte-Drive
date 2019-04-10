@@ -8,8 +8,11 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 class RegisterViewController: UIViewController {
+    
+    
     
     // Username text field
     @IBOutlet weak var usernameTextField: UITextField!

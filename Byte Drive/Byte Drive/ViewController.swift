@@ -14,20 +14,36 @@ import UIKit
 import Firebase
 import UserNotifications
 import UserNotificationsUI
+import GoogleSignIn
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GIDSignInUIDelegate {
+    
+    var userdefault = UserDefaults()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if userdefault.bool(forKey: "usersignin"){
+            performSegue(withIdentifier: "toHomeFromLogin", sender: self)
+        }
+    }
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    
     @IBAction func pressLogin(_ sender: UIButton) {
         Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!) {
             (user, error) in
-            if (error != nil) {
-                print("Found errors: \(error!)")
-            } else {
+            if (error == nil) {
                 print("Successfully signed in")
                 self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
+            } else {
+                print("Found errors: \(error!)")
             }
         }
     }
