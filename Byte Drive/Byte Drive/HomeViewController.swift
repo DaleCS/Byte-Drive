@@ -9,6 +9,8 @@
 //  From Youtube video by user CodeWithChris: https://www.youtube.com/watch?v=jJUm1VBnR_U
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -23,6 +25,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    @IBAction func logoutPressed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            try GIDSignIn.sharedInstance()?.signOut()
+            performSegue(withIdentifier: "logoutFromHome", sender: self)
+        } catch {
+            print("Found errors: Failed to sign out")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
