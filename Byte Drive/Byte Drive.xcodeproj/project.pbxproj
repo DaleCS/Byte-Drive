@@ -9,18 +9,18 @@
 /* Begin PBXBuildFile section */
 		04D3CCC1347CD3E59AFECE6B /* Pods_BTNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FFDA33353CB118ABFC7CA1 /* Pods_BTNotifications.framework */; };
 		5358F6E2222F4F3D00DAA52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358F6E1222F4F3D00DAA52C /* AppDelegate.swift */; };
-		5358F6E4222F4F3D00DAA52C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358F6E3222F4F3D00DAA52C /* LoginViewController.swift */; };
 		5358F6E7222F4F3D00DAA52C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5358F6E5222F4F3D00DAA52C /* Main.storyboard */; };
 		5358F6E9222F4F3E00DAA52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5358F6E8222F4F3E00DAA52C /* Assets.xcassets */; };
 		5358F6EC222F4F3E00DAA52C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5358F6EA222F4F3E00DAA52C /* LaunchScreen.storyboard */; };
+		539FE057226BB2E500EC0860 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE053226BB2E500EC0860 /* HomeViewController.swift */; };
+		539FE058226BB2E500EC0860 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE054226BB2E500EC0860 /* UploadViewController.swift */; };
+		539FE059226BB2E500EC0860 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE055226BB2E500EC0860 /* LoginViewController.swift */; };
+		539FE05A226BB2E500EC0860 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE056226BB2E500EC0860 /* RegisterViewController.swift */; };
 		53DC8A3A222F972400AD1D50 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DC8A39222F972400AD1D50 /* UserNotifications.framework */; };
 		53DC8A3C222F972400AD1D50 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DC8A3B222F972400AD1D50 /* UserNotificationsUI.framework */; };
 		53DC8A3F222F972400AD1D50 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC8A3E222F972400AD1D50 /* NotificationViewController.swift */; };
 		53DC8A42222F972400AD1D50 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC8A40222F972400AD1D50 /* MainInterface.storyboard */; };
 		53DC8A46222F972400AD1D50 /* BTNotifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 53DC8A37222F972400AD1D50 /* BTNotifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		53F937A9225D460C003A9095 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F937A8225D460C003A9095 /* RegisterViewController.swift */; };
-		BC536F22222FC0C300EE6998 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC536F21222FC0C300EE6998 /* HomeViewController.swift */; };
-		BC536F24222FC11300EE6998 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC536F23222FC11300EE6998 /* UploadViewController.swift */; };
 		BC536F26222FCED400EE6998 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC536F25222FCED400EE6998 /* GoogleService-Info.plist */; };
 		E92A5321B7EC369AB5DD9B3D /* Pods_Byte_Drive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A8356173F19C4CED807D26 /* Pods_Byte_Drive.framework */; };
 /* End PBXBuildFile section */
@@ -54,21 +54,21 @@
 		369A467245D69A02C3C14552 /* Pods-BTNotifications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTNotifications.release.xcconfig"; path = "Target Support Files/Pods-BTNotifications/Pods-BTNotifications.release.xcconfig"; sourceTree = "<group>"; };
 		5358F6DE222F4F3D00DAA52C /* Byte Drive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Byte Drive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5358F6E1222F4F3D00DAA52C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5358F6E3222F4F3D00DAA52C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5358F6E6222F4F3D00DAA52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5358F6E8222F4F3E00DAA52C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5358F6EB222F4F3E00DAA52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5358F6ED222F4F3E00DAA52C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		539FE053226BB2E500EC0860 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		539FE054226BB2E500EC0860 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		539FE055226BB2E500EC0860 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		539FE056226BB2E500EC0860 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		53DC8A37222F972400AD1D50 /* BTNotifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BTNotifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DC8A39222F972400AD1D50 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		53DC8A3B222F972400AD1D50 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		53DC8A3E222F972400AD1D50 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		53DC8A41222F972400AD1D50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		53DC8A43222F972400AD1D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		53F937A8225D460C003A9095 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		603AB902188BC25818933DBE /* Pods-BTNotifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTNotifications.debug.xcconfig"; path = "Target Support Files/Pods-BTNotifications/Pods-BTNotifications.debug.xcconfig"; sourceTree = "<group>"; };
-		BC536F21222FC0C300EE6998 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		BC536F23222FC11300EE6998 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		BC536F25222FCED400EE6998 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C2DBF34B3EF0AC001E4C1CBC /* Pods-Byte Drive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Byte Drive.release.xcconfig"; path = "Target Support Files/Pods-Byte Drive/Pods-Byte Drive.release.xcconfig"; sourceTree = "<group>"; };
 		C4A8356173F19C4CED807D26 /* Pods_Byte_Drive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Byte_Drive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,9 +121,9 @@
 		5358F6E0222F4F3D00DAA52C /* Byte Drive */ = {
 			isa = PBXGroup;
 			children = (
-				53630808226BAF070026638E /* Model */,
-				5363080A226BAF270026638E /* View */,
-				53630809226BAF180026638E /* Controller */,
+				539FE05C226BB30600EC0860 /* Model */,
+				539FE05B226BB2FE00EC0860 /* View */,
+				539FE052226BB2E500EC0860 /* Controller */,
 				5358F6E1222F4F3D00DAA52C /* AppDelegate.swift */,
 				5358F6E5222F4F3D00DAA52C /* Main.storyboard */,
 				5358F6EA222F4F3E00DAA52C /* LaunchScreen.storyboard */,
@@ -133,32 +133,29 @@
 			path = "Byte Drive";
 			sourceTree = "<group>";
 		};
-		53630808226BAF070026638E /* Model */ = {
+		539FE052226BB2E500EC0860 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				539FE053226BB2E500EC0860 /* HomeViewController.swift */,
+				539FE054226BB2E500EC0860 /* UploadViewController.swift */,
+				539FE055226BB2E500EC0860 /* LoginViewController.swift */,
+				539FE056226BB2E500EC0860 /* RegisterViewController.swift */,
 			);
-			name = Model;
-			path = "New Group";
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		53630809226BAF180026638E /* Controller */ = {
+		539FE05B226BB2FE00EC0860 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BC536F23222FC11300EE6998 /* UploadViewController.swift */,
-				53F937A8225D460C003A9095 /* RegisterViewController.swift */,
-				BC536F21222FC0C300EE6998 /* HomeViewController.swift */,
-				5358F6E3222F4F3D00DAA52C /* LoginViewController.swift */,
 			);
-			name = Controller;
-			path = "New Group1";
+			path = View;
 			sourceTree = "<group>";
 		};
-		5363080A226BAF270026638E /* View */ = {
+		539FE05C226BB30600EC0860 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = View;
-			path = "New Group2";
+			path = Model;
 			sourceTree = "<group>";
 		};
 		53DC8A38222F972400AD1D50 /* Frameworks */ = {
@@ -411,11 +408,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5358F6E4222F4F3D00DAA52C /* LoginViewController.swift in Sources */,
-				53F937A9225D460C003A9095 /* RegisterViewController.swift in Sources */,
-				BC536F24222FC11300EE6998 /* UploadViewController.swift in Sources */,
+				539FE059226BB2E500EC0860 /* LoginViewController.swift in Sources */,
+				539FE05A226BB2E500EC0860 /* RegisterViewController.swift in Sources */,
 				5358F6E2222F4F3D00DAA52C /* AppDelegate.swift in Sources */,
-				BC536F22222FC0C300EE6998 /* HomeViewController.swift in Sources */,
+				539FE058226BB2E500EC0860 /* UploadViewController.swift in Sources */,
+				539FE057226BB2E500EC0860 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
