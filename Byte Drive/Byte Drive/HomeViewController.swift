@@ -11,8 +11,9 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import MobileCoreServices
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate {
     
     var uploadedData = ["Document1", "Document2", "Document3"]
     
@@ -27,6 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
     }
     
+    // Action upon pressing log out button
     @IBAction func logoutPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
@@ -35,6 +37,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } catch {
             print("Found errors: Failed to sign out")
         }
+    }
+    
+    // Action upon pressing upload button
+    @IBAction func uploadButton(_ sender: Any) {
+        let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc", kUTTypePDF as String, kUTTypePlainText as String], in: .import)
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        present(documentPicker, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,4 +58,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell!
     }
     
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let selectedFile = urls.first else {
+            return
+        }
+        // TODO: Upload to database
+    }
 }
