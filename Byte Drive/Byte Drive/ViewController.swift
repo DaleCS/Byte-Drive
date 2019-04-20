@@ -34,12 +34,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signInSilently()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        if userdefault.bool(forKey: "usersignin"){
-            //self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
-        }
-    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5) {
