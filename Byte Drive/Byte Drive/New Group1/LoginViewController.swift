@@ -18,7 +18,7 @@ import UserNotifications
 import UserNotificationsUI
 import GoogleSignIn
 
-class ViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     
     @IBOutlet weak var usernameField: UITextField!
