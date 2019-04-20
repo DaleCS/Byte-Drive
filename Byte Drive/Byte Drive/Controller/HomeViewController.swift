@@ -29,7 +29,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // Action upon pressing log out button
-    @IBAction func logoutPressed(_ sender: Any) {
+    @IBAction func logoutPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
             try GIDSignIn.sharedInstance()?.signOut()
@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // Action upon pressing upload button
-    @IBAction func uploadButton(_ sender: Any) {
+    @IBAction func uploadButton(_ sender: UIButton) {
         let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc", kUTTypePDF as String, kUTTypePlainText as String], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
@@ -59,9 +59,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        guard let selectedFile = urls.first else {
+        guard let fileURL = urls.first else {
             return
         }
-        // TODO: Upload to database
+        
+        let firebaseStorage = Storage.storage()
+        let firebaseStorageRef = firebaseStorage.reference()
+        
+        let uploadRef = firebaseStorageRef.child("User1/TextFile")
+        
+        let uploadTask = uploadRef.putFile(from: fileURL, metadata: nil) {
+            (metaData, error) in
+            if (error != nil) {
+                print("Error: \(error)")
+                return
+            }
+            if (metaData == nil) {
+                print("Error: Meta data was nil")
+                return
+            }
+            print("Success!")
+        }
+        
     }
 }

@@ -21,5 +21,6 @@ target 'Byte Drive' do
   pod 'SVProgressHUD'
   pod 'ChameleonFramework'
   pod 'GoogleSignIn'
+  pod 'Firebase/Storage'
 
 end
