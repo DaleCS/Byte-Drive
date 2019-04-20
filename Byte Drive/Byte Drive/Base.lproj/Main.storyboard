@@ -174,7 +174,7 @@
         <!--Home View Controller-->
         <scene sceneID="PY0-64-qRi">
             <objects>
-                <viewController id="Bhc-Wa-Al0" customClass="HomeViewController" customModule="Byte_Drive" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="Bhc-Wa-Al0" customClass="HomeViewController" customModule="Byte_Drive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JLz-bc-XoX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -243,6 +243,7 @@
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="trash" id="OYk-t7-ZMq">
                                             <connections>
                                                 <action selector="trashButton:" destination="SS1-8T-1Mv" id="GIa-GM-hzW"/>
+                                                <segue destination="Bhc-Wa-Al0" kind="presentation" id="dYE-Rq-Fy3"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Rlw-Rv-5E5">

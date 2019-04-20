@@ -24,11 +24,12 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signInSilently()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if userdefault.bool(forKey: "usersignin"){
-            performSegue(withIdentifier: "toHomeFromLogin", sender: self)
+            //self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
         }
     }
     
