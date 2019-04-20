@@ -18,7 +18,7 @@ import Firebase
 import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
     let userdefault = UserDefaults()
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate {
         FirebaseApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self as? GIDSignInDelegate
+        GIDSignIn.sharedInstance().delegate = self
         
         return true
     }
@@ -44,9 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate {
                 if error == nil {
                     self.userdefault.set(true, forKey: "usersignin")
                     self.userdefault.synchronize()
-                    self.window?.rootViewController?.performSegue(withIdentifier: "toHomeFromLogin", sender: nil)
+                    let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homePage = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                    self.window?.rootViewController = homePage
                 } else {
-                    print(error?.localizedDescription)
+                    print(error!.localizedDescription)
                 }
             }
         }
