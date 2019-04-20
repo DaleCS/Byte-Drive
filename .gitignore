@@ -1,3 +1,4 @@
 # Don't track content of these folders
 **/.DS_Store
 Byte\ Drive/Pods/*
+Byte\ Drive/Byte\ Drive.xcworkspace/xcuserdata/*
