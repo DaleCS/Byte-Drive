@@ -15,6 +15,14 @@ import MobileCoreServices
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate {
     
+    let downloadView: UIView  = {
+        let downloadView: UIView = UIView()
+        let nameTextView: UITextView = UITextView();
+        nameTextView.text = "User1 File"
+        downloadView.addSubview(nameTextView)
+        return downloadView
+    }()
+    
     var uploadedData = ["Document1", "Document2", "Document3"]
     
     @IBOutlet weak var tableView: UITableView!
@@ -63,23 +71,42 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         
-        let firebaseStorage = Storage.storage()
-        let firebaseStorageRef = firebaseStorage.reference()
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let fileName = fileURL.lastPathComponent
         
-        let uploadRef = firebaseStorageRef.child("User1/TextFile")
-        
-        let uploadTask = uploadRef.putFile(from: fileURL, metadata: nil) {
-            (metaData, error) in
-            if (error != nil) {
-                print("Error: \(error)")
-                return
+        let verifyUploadAlertController = UIAlertController(title: "Upload \(fileName) to this directory?", message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) {
+            (handler) in
+            let storageRef = Storage.storage().reference().child("\(userID)/\(fileName)")
+            let databaseRef = Database.database().reference().child("FilePath/\(userID)/\(fileName.hashValue)")
+            
+            let _ = storageRef.putFile(from: fileURL, metadata: nil) {
+                (metaData, error) in
+                if (error != nil) {
+                    print("Error: \(String(describing: error))")
+                    return
+                }
+                if (metaData == nil) {
+                    print("Error: Meta data was nil")
+                    return
+                }
             }
-            if (metaData == nil) {
-                print("Error: Meta data was nil")
-                return
-            }
-            print("Success!")
+            let databaseUpload =
+            [
+                "name": String(fileName),
+                "type": "PDF",
+                "isFolder": false,
+                "contents": nil
+            ] as [String : Any?]
+            databaseRef.setValue(databaseUpload)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            handler in
+            // Do nothing
         }
         
+        verifyUploadAlertController.addAction(confirmAction)
+        verifyUploadAlertController.addAction(cancelAction)
+        self.present(verifyUploadAlertController, animated: true)
     }
 }
