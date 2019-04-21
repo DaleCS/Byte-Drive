@@ -12,8 +12,6 @@ import GoogleSignIn
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
-    
-    
     // Username text field
     @IBOutlet weak var usernameTextField: UITextField!
     // Password text field

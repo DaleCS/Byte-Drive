@@ -18,7 +18,7 @@ import UserNotifications
 import UserNotificationsUI
 import GoogleSignIn
 
-class ViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     
     @IBOutlet weak var usernameField: UITextField!
@@ -103,30 +103,5 @@ class ViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate
         }
     }
     
-    /*
-    @IBAction func pressNotifications(_ sender: UIButton) {
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound])
-        { (granted, error) in
-            if (granted) {
-                print("User has granted notifications.")
-                
-                let notificationContent = UNMutableNotificationContent()
-                notificationContent.title = "Test Notification"
-                notificationContent.body = "This is a test notification from Byte Drive!"
-                notificationContent.sound = UNNotificationSound.default
-                
-                // Use local trigger that is triggered 2 seconds after user grants notifications
-                let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
-                
-                let notificationRequest = UNNotificationRequest(identifier: "identifier", content: notificationContent, trigger: notificationTrigger)
-                center.add(notificationRequest)
-                
-                print("Local notification added")
-            } else {
-                print("User has denied notifications.")
-            }
-        }
-    }
-    */
+    
 }
