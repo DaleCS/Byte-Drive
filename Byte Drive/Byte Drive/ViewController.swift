@@ -23,6 +23,9 @@ class ViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var googleButton: GIDSignInButton!
     
     var userdefault = UserDefaults()
     
@@ -33,6 +36,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate
 
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signInSilently()
+        
+        loginButton.layer.cornerRadius = 10
+        signUpButton.layer.cornerRadius = 10
+        googleButton.layer.cornerRadius = 10
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

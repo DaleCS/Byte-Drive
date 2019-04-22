@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xum-Sw-agb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xum-Sw-agb">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -91,7 +91,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="RWS-kV-H4Y"/>
                     <connections>
+                        <outlet property="googleButton" destination="WsQ-2R-0ys" id="0OF-gW-W3F"/>
+                        <outlet property="loginButton" destination="ZyQ-Qh-B8e" id="aNa-cc-9hx"/>
                         <outlet property="passwordField" destination="3wi-wI-a4v" id="jcC-po-RCq"/>
+                        <outlet property="signUpButton" destination="ybe-xp-JBQ" id="HmO-jj-C48"/>
                         <outlet property="usernameField" destination="tyF-SB-fn1" id="9uy-wh-dCp"/>
                         <segue destination="Bhc-Wa-Al0" kind="showDetail" identifier="toHomeFromLogin" id="egc-9P-3cS"/>
                     </connections>

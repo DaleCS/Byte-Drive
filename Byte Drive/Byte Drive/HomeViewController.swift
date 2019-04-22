@@ -37,6 +37,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    @IBAction func downloadFile(_ sender: Any) {
+        // Retrieve File user is trying to download and display it
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return uploadedData.count
     }
