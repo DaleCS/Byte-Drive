@@ -77,7 +77,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) {
             (handler) in
             let storageRef = Storage.storage().reference().child("\(userID)/\(fileName)")
-            let databaseRef = Database.database().reference().child("FilePath/\(userID)/\(fileName.hashValue)")
+            let databaseRef = Database.database().reference().child("FilePath/\(userID)/")
             
             let _ = storageRef.putFile(from: fileURL, metadata: nil) {
                 (metaData, error) in
@@ -92,12 +92,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             let databaseUpload =
             [
-                "name": String(fileName),
-                "type": "PDF",
-                "isFolder": false,
-                "contents": nil
+                "title": String(fileName),
+                "type": "PDF"
             ] as [String : Any?]
-            databaseRef.setValue(databaseUpload)
+            databaseRef.childByAutoId().setValue(databaseUpload)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             handler in
