@@ -15,22 +15,12 @@ import MobileCoreServices
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate {
     
-    let downloadView: UIView  = {
-        let downloadView: UIView = UIView()
-        let nameTextView: UITextView = UITextView();
-        nameTextView.text = "User1 File"
-        downloadView.addSubview(nameTextView)
-        return downloadView
-    }()
-    
-    var uploadedData = ["Document1", "Document2", "Document3"]
+    var uploadedData = [AnyObject]()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -40,7 +30,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func logoutPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
-            try GIDSignIn.sharedInstance()?.signOut()
+            GIDSignIn.sharedInstance()?.signOut()
             performSegue(withIdentifier: "logoutFromHome", sender: self)
         } catch {
             print("Found errors: Failed to sign out")
@@ -62,7 +52,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell")
         
-        cell?.textLabel?.text = uploadedData[indexPath.row]
+        guard let userID = Auth.auth().currentUser?.uid else { return cell! }
+        let databaseRef = Database.database().reference().child("FilePath/\(userID)/")
+        
+        let _ = databaseRef.observe(DataEventType.value, with: { (snapshot) in
+            let data = snapshot.value as? [String: AnyObject] ?? [:]
+            self.uploadedData = Array(data.values)
+        })
+        
+        // The code below doesn't work (Doesn't display the file name)
+        cell?.textLabel?.text = uploadedData[indexPath.row]["title"] as? String ?? ""
         return cell!
     }
     
@@ -110,3 +109,5 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(verifyUploadAlertController, animated: true)
     }
 }
+
+// What is user research
