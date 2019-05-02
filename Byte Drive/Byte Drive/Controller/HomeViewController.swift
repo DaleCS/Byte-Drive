@@ -13,6 +13,11 @@ import Firebase
 import GoogleSignIn
 import MobileCoreServices
 
+struct fileStruct {
+    let title : String!
+    let type : String!
+}
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate {
     
     let downloadView: UIView  = {
@@ -23,7 +28,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return downloadView
     }()
     
-    var uploadedData = ["Document1", "Document2", "Document3"]
+    var uploadedData = [String]()
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,6 +40,31 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let dRef = Database.database().reference()
+        
+        dRef.child("FilePath/\(userID)").queryOrderedByKey().observeSingleEvent(of: .childAdded) { (snapshot) in
+            let title = snapshot.value!["title"] as! String
+            let type = snapshot.value!["type"] as! String
+            
+            self.uploadedData.append(title)
+            self.tableView.reloadData()
+        }
+        
+        
+        /*
+        ref = Database.database().reference()
+        ref?.child("FilePath/\(userID)/-6120651490687548386/name").observe(.childAdded, with: { (snapshot) in
+            let name = snapshot.value as? String
+            
+            if let actualName = name {
+                self.uploadedData.append(actualName)
+                self.tableView.reloadData()
+            }
+        })
+        */
     }
     
     // Action upon pressing log out button
@@ -55,6 +86,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         present(documentPicker, animated: true, completion: nil)
     }
     
+    @IBAction func downloadPressed(_ sender: Any) {
+        
+        
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return uploadedData.count
     }
@@ -79,7 +114,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             (handler) in
             let storageRef = Storage.storage().reference().child("\(userID)/\(fileName)")
             let databaseRef = Database.database().reference().child("FilePath/\(userID)/\(fileName.hashValue)")
-            
             let _ = storageRef.putFile(from: fileURL, metadata: nil) {
                 (metaData, error) in
                 if (error != nil) {
