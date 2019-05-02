@@ -20,15 +20,7 @@ struct fileStruct {
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate {
     
-    let downloadView: UIView  = {
-        let downloadView: UIView = UIView()
-        let nameTextView: UITextView = UITextView();
-        nameTextView.text = "User1 File"
-        downloadView.addSubview(nameTextView)
-        return downloadView
-    }()
-    
-    var uploadedData = [String]()
+    var uploadedData = [fileStruct]()
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -44,17 +36,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
         let dRef = Database.database().reference()
-        
+/*
         dRef.child("FilePath/\(userID)").queryOrderedByKey().observeSingleEvent(of: .childAdded) { (snapshot) in
-            
-            let value = snapshot.value as? NSDictionary
+         
+            let value = snapshot.value as? [String: AnyObject]
             let name = value!["name"] as? String
             
             
-            self.uploadedData.append(name!)
+            self.uploadedData.insert(fileStruct(title: name, type: "PDF"), at: 0)
             self.tableView.reloadData()
         }
-        
+*/
+        dRef.child("FilePath/\(userID)").queryOrderedByKey().observe(.childAdded) { (snapshot) in
+            let value = snapshot.value as? [String: AnyObject]
+            let name = value!["name"] as? String
+            
+            
+            self.uploadedData.insert(fileStruct(title: name, type: "PDF"), at: 0)
+            self.tableView.reloadData()
+        }
         
         /*
         ref = Database.database().reference()
@@ -99,7 +99,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell")
         
-        cell?.textLabel?.text = uploadedData[indexPath.row]
+        let label1 = cell?.viewWithTag(1) as! UILabel
+        label1.text = uploadedData[indexPath.row].title
         return cell!
     }
     
