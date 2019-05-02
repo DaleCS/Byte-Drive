@@ -46,10 +46,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let dRef = Database.database().reference()
         
         dRef.child("FilePath/\(userID)").queryOrderedByKey().observeSingleEvent(of: .childAdded) { (snapshot) in
-            let title = snapshot.value!["title"] as! String
-            let type = snapshot.value!["type"] as! String
             
-            self.uploadedData.append(title)
+            let value = snapshot.value as? NSDictionary
+            let name = value!["name"] as? String
+            
+            
+            self.uploadedData.append(name!)
             self.tableView.reloadData()
         }
         
@@ -113,7 +115,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) {
             (handler) in
             let storageRef = Storage.storage().reference().child("\(userID)/\(fileName)")
-            let databaseRef = Database.database().reference().child("FilePath/\(userID)/\(fileName.hashValue)")
+            let databaseRef = Database.database().reference()
             let _ = storageRef.putFile(from: fileURL, metadata: nil) {
                 (metaData, error) in
                 if (error != nil) {
@@ -125,14 +127,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     return
                 }
             }
-            let databaseUpload =
-            [
-                "name": String(fileName),
+            
+            let databaseUpload : [String : Any] = [
+                "name": fileName,
                 "type": "PDF",
                 "isFolder": false,
-                "contents": nil
-            ] as [String : Any?]
-            databaseRef.setValue(databaseUpload)
+            ]
+            databaseRef.child("FilePath/\(userID)/").childByAutoId().setValue(databaseUpload)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             handler in
