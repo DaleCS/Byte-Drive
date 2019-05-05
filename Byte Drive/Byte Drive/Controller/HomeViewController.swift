@@ -17,14 +17,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var uploadedData: [File] = [File]()
     
+    var folderName: String = String()
     var currentPath: String = String()
+    var currentDirectory: String = String()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Upload", style: .done, target: self, action: #selector(uploadButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ New", style: .done, target: self, action: #selector(uploadButton))
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,15 +71,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let _ = databaseRef.observe(.value, with: { (snapshot) in
             if (snapshot.exists() != false) {
                 let filesDictionary = snapshot.value as! [String: AnyObject]
+                self.folderName = filesDictionary["title"] as! String
                 self.uploadedData = [File]()
                 for file in filesDictionary.values {
-                    var newFile: File = File()
-                    newFile.isFolder = file["isFolder"] as! Bool
-                    newFile.title = file["title"] as! String
-                    newFile.type = file["type"] as! String
-                    newFile.storageRef = file["storageRef"] as! String
-                    self.uploadedData.append(newFile)
+                    if (file["isFolder"] != nil) {
+                        var newFile: File = File()
+                        newFile.isFolder = file["isFolder"] as! Bool
+                        newFile.title = file["title"] as! String
+                        newFile.type = file["type"] as! String
+                        newFile.storageRef = file["storageRef"] as! String
+                        newFile.databaseRef = file["databaseRef"] as! String
+                        self.uploadedData.append(newFile)
+                    }
                 }
+            } else {
+                databaseRef.setValue([
+                    "title": "\(self.folderName)",
+                    "directory": "\(self.currentDirectory)"
+                ])
             }
             self.tableView.reloadData()
         })
@@ -94,7 +105,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let verifyUploadAlertController = UIAlertController(title: "Upload \(fileName) to this directory?", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) {
             (handler) in
-            let storageRef = Storage.storage().reference().child("\(userID)/\(fileName)/")
+            
+            var currentFolder = self.currentPath
+            currentFolder.removeSubrange(currentFolder.startIndex...currentFolder.lastIndex(of: "/")!)
+            let storageRef = Storage.storage().reference().child("\(userID)/\(self.currentDirectory)/\(fileName)")
             let databaseRef = Database.database().reference().child("\(self.currentPath)")
             
             let _ = storageRef.putFile(from: fileURL, metadata: nil) {
@@ -109,19 +123,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 let newPathForThisFile = databaseRef.childByAutoId()
+                
                 var newPathForThisFileStr = newPathForThisFile.url
                 newPathForThisFileStr.removeSubrange(newPathForThisFileStr.startIndex..<newPathForThisFileStr.index(newPathForThisFileStr.startIndex, offsetBy: 34))
-                var storagePathForThisFile = newPathForThisFileStr
-                storagePathForThisFile.removeSubrange(storagePathForThisFile.lastIndex(of: "/")!..<storagePathForThisFile.endIndex)
-                storagePathForThisFile.removeSubrange(storagePathForThisFile.startIndex...storagePathForThisFile.firstIndex(of: "/")!)
-                storagePathForThisFile.insert(contentsOf: "/\(fileName)", at: storagePathForThisFile.endIndex)
                 
                 let databaseUpload =
                     [
                         "isFolder": false,
-                        "title": String(fileName),
-                        "storageRef": "\(storagePathForThisFile)",
+                        "title": fileName,
                         "type": "\(metaData!.contentType ?? "")",
+                        "storageRef": "\(userID)/\(self.currentDirectory)/\(fileName)",
                         "databaseRef": "\(newPathForThisFileStr)"
                     ] as [String : Any?]
                 databaseRef.childByAutoId().setValue(databaseUpload)
@@ -141,13 +152,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if (uploadedData[indexPath.row].isFolder == true) {
             let nextFileController = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             nextFileController.currentPath = uploadedData[indexPath.row].databaseRef
+            nextFileController.folderName = uploadedData[indexPath.row].title
+            nextFileController.currentDirectory = "\(currentDirectory)/\(uploadedData[indexPath.row].title)"
             navigationController?.pushViewController(nextFileController, animated: true)
+        } else {
+            let fileDescriptionVC = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
+            fileDescriptionVC.descriptionArr = [("Title: ", uploadedData[indexPath.row].title), ("Type: ", uploadedData[indexPath.row].type), ("Directory: ", "\(currentDirectory)/")]
+            navigationController?.pushViewController(fileDescriptionVC, animated: true)
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        var nextHomeViewController = segue.destination as! HomeViewController
-//        nextHomeViewController.currentPath =
     }
 }
 

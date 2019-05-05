@@ -108,9 +108,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDel
             let firstHomeViewController = fileBrowsingNavController.viewControllers.first as! HomeViewController
             
             guard let userID = Auth.auth().currentUser?.uid else { return }
-            firstHomeViewController.currentPath = "FilePath/\(userID)/"
-        } else if (segue.identifier == "ToRegistrationFromLogin") {
-            
+            firstHomeViewController.currentPath = "FilePath/\(userID)/root"
+            firstHomeViewController.folderName = "root"
+            firstHomeViewController.currentDirectory = "root"
         }
     }
     
