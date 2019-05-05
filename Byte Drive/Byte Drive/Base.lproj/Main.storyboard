@@ -76,7 +76,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BKq-Qe-7zP" kind="show" identifier="goToRegistration" id="WpY-LV-jpJ"/>
+                                    <segue destination="BKq-Qe-7zP" kind="show" identifier="toRegistrationFromLogin" id="WpY-LV-jpJ"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WsQ-2R-0ys" customClass="GIDSignInButton">
@@ -93,7 +93,7 @@
                     <connections>
                         <outlet property="passwordField" destination="3wi-wI-a4v" id="jcC-po-RCq"/>
                         <outlet property="usernameField" destination="tyF-SB-fn1" id="9uy-wh-dCp"/>
-                        <segue destination="Bhc-Wa-Al0" kind="presentation" identifier="toHomeFromLogin" modalTransitionStyle="crossDissolve" id="egc-9P-3cS"/>
+                        <segue destination="puk-qb-Nt2" kind="presentation" identifier="toHomeFromLogin" modalTransitionStyle="crossDissolve" id="egc-9P-3cS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -176,7 +176,7 @@
                     <connections>
                         <outlet property="passwordTextField" destination="9CK-ar-P5R" id="VwK-fa-qkr"/>
                         <outlet property="usernameTextField" destination="csg-wq-5so" id="dZ1-r0-UqH"/>
-                        <segue destination="Bhc-Wa-Al0" kind="presentation" identifier="goToHomeFromRegister" modalTransitionStyle="crossDissolve" id="BB2-lP-pf2"/>
+                        <segue destination="puk-qb-Nt2" kind="presentation" identifier="goToHomeFromRegister" modalTransitionStyle="crossDissolve" id="BB2-lP-pf2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAe-co-TRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -206,39 +206,41 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ow-68-6bv">
-                                <rect key="frame" x="16" y="50" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log out"/>
-                                <connections>
-                                    <action selector="logoutPressed:" destination="Bhc-Wa-Al0" eventType="touchUpInside" id="Qd0-6u-gzR"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutFromHome" id="12H-Hp-26c"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jx6-pA-Czc">
-                                <rect key="frame" x="321" y="32" width="30" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <state key="normal" title="+"/>
-                                <connections>
-                                    <action selector="uploadButton:" destination="Bhc-Wa-Al0" eventType="touchUpInside" id="OgF-CA-7XL"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="91C-I3-Oaz"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8u0-zR-D60"/>
                     <connections>
                         <outlet property="tableView" destination="qcR-v8-R6O" id="9iD-UO-8T1"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutFromHome" id="Frh-W6-mrg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YkD-ns-Ebg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.5999999999999" y="22.906403940886701"/>
+            <point key="canvasLocation" x="2681" y="23"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="q4Z-Lt-ttd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="puk-qb-Nt2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fUJ-Qp-JU0">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Bhc-Wa-Al0" kind="relationship" relationship="rootViewController" id="EyS-gD-gJs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JRz-FL-Q02" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1898" y="23"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BB2-lP-pf2"/>
-        <segue reference="12H-Hp-26c"/>
+        <segue reference="egc-9P-3cS"/>
+        <segue reference="Frh-W6-mrg"/>
     </inferredMetricsTieBreakers>
 </document>

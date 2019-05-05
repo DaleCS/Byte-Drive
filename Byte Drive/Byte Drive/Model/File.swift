@@ -8,16 +8,19 @@
 
 import Foundation
 
+// This is used for displaying file cells in HomeViewController
 struct File {
     var isFolder: Bool
     var title: String
     var type: String
     var storageRef: String
+    var databaseRef: String
     
     init() {
         isFolder = false
         title = ""
         type = ""
         storageRef = ""
+        databaseRef = ""
     }
 }
