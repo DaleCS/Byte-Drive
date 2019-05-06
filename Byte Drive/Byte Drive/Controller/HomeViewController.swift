@@ -32,6 +32,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         
         readFilesInCurrentPath()
+        
+        tableView.register(UINib(nibName: "FileCell",  bundle: nil  ), forCellReuseIdentifier: "FileCell")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,10 +41,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell") as! FileCell
         
-        cell?.textLabel?.text = uploadedData[indexPath.row].title
-        return cell!
+        cell.title.text = uploadedData[indexPath.row].title
+        cell.icon.image = #imageLiteral(resourceName: "folder")
+        return cell
     }
     
     // Action upon pressing upload button
@@ -79,6 +82,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         newFile.isFolder = file["isFolder"] as! Bool
                         newFile.title = file["title"] as! String
                         newFile.type = file["type"] as! String
+                        newFile.size = file["size"] as! String
                         newFile.storageRef = file["storageRef"] as! String
                         newFile.databaseRef = file["databaseRef"] as! String
                         self.uploadedData.append(newFile)
@@ -132,6 +136,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         "isFolder": false,
                         "title": fileName,
                         "type": "\(metaData!.contentType ?? "")",
+                        "size": "\(String(format: "%.2f", Double(metaData!.size)/1000)) KB",
                         "storageRef": "\(userID)/\(self.currentDirectory)/\(fileName)",
                         "databaseRef": "\(newPathForThisFileStr)"
                     ] as [String : Any?]
@@ -157,7 +162,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             navigationController?.pushViewController(nextFileController, animated: true)
         } else {
             let fileDescriptionVC = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
-            fileDescriptionVC.descriptionArr = [("Title: ", uploadedData[indexPath.row].title), ("Type: ", uploadedData[indexPath.row].type), ("Directory: ", "\(currentDirectory)/")]
+            fileDescriptionVC.storageRef = uploadedData[indexPath.row].storageRef
+            fileDescriptionVC.descriptionArr = [("Title ", uploadedData[indexPath.row].title), ("Type ", uploadedData[indexPath.row].type), ("Size ", "\(uploadedData[indexPath.row].size)"), ("Directory ", "\(currentDirectory)/")]
             navigationController?.pushViewController(fileDescriptionVC, animated: true)
         }
     }

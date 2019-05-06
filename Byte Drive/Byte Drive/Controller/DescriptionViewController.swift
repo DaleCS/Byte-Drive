@@ -12,6 +12,7 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var descriptionTableView: UITableView!
     
+    var storageRef: String = String()
     var descriptionArr: [(String, String)] = [(String, String)]()
     
     override func viewDidLoad() {
@@ -23,18 +24,26 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         navigationItem.title = descriptionArr[0].1
         
         descriptionTableView.reloadData()
+        
+        descriptionTableView.register(UINib(nibName: "DescriptionDownloadTableViewCell",  bundle: nil  ), forCellReuseIdentifier: "DescriptionDownloadCell")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return descriptionArr.count
+        return descriptionArr.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell") as! DescriptionableViewCell
         
-        cell.category.text = "\(descriptionArr[indexPath.row].0)"
-        cell.value.text = "\(descriptionArr[indexPath.row].1)"
-        
-        return cell
+        if (indexPath.row == descriptionArr.count) {
+            let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DescriptionDownloadCell") as! DescriptionDownloadTableViewCell
+            cell.fileStorageRef = storageRef
+            return cell
+        } else {
+            let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DescriptionCell") as! DescriptionTableViewCell
+            
+            cell.category.text = "\(descriptionArr[indexPath.row].0)"
+            cell.value.text = "\(descriptionArr[indexPath.row].1)"
+            return cell
+        }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DescriptionableViewCell.swift
+//  FileCell.swift
 //  Byte Drive
 //
 //  Created by Dale Christian Seen on 5/5/19.
@@ -8,11 +8,10 @@
 
 import UIKit
 
-class DescriptionableViewCell: UITableViewCell {
+class FileCell: UITableViewCell {
     
-    @IBOutlet weak var category: UILabel!
-    
-    @IBOutlet weak var value: UILabel!
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var title: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +23,5 @@ class DescriptionableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

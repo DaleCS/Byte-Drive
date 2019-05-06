@@ -13,14 +13,16 @@ struct File {
     var isFolder: Bool
     var title: String
     var type: String
+    var size: String
     var storageRef: String
     var databaseRef: String
     
     init() {
         isFolder = false
-        title = ""
-        type = ""
-        storageRef = ""
-        databaseRef = ""
+        title = String()
+        type = String()
+        size = String()
+        storageRef = String()
+        databaseRef = String()
     }
 }
