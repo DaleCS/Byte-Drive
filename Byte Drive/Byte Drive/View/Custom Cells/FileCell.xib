@@ -22,11 +22,12 @@
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JNB-n2-3ZF">
                         <rect key="frame" x="10" y="5" width="300" height="49.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="scq-Xq-9gh">
-                                <rect key="frame" x="0.0" y="0.0" width="248" height="49.5"/>
+                            <imageView userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="scq-Xq-9gh">
+                                <rect key="frame" x="0.0" y="0.0" width="290" height="49.5"/>
+                                <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4k-KY-ji3">
-                                <rect key="frame" x="258" y="0.0" width="42" height="49.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4k-KY-ji3">
+                                <rect key="frame" x="300" y="0.0" width="0.0" height="49.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,6 +51,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="folder" width="37.5" height="37.5"/>
+        <image name="folder" width="409.60000610351562" height="409.60000610351562"/>
     </resources>
 </document>

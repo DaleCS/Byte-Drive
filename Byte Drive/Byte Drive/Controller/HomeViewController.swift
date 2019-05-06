@@ -43,14 +43,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell") as! FileCell
         
-        cell.title.text = uploadedData[indexPath.row].title
-        cell.icon.image = #imageLiteral(resourceName: "folder")
+        var title = uploadedData[indexPath.row].title
+        title.removeSubrange(title.lastIndex(of: ".")!..<title.endIndex)
+        cell.title.text = title
+        
+        switch(uploadedData[indexPath.row].type) {
+        case "application/pdf":
+            cell.icon.image = #imageLiteral(resourceName: "pdf")
+        case "text/plain":
+            cell.icon.image = #imageLiteral(resourceName: "txt")
+        case "Folder":
+            cell.icon.image = #imageLiteral(resourceName: "folder")
+        default:
+            cell.icon.image = #imageLiteral(resourceName: "file")
+        }
         return cell
     }
     
     // Action upon pressing upload button
     @IBAction func uploadButton(_ sender: UIButton) {
-        let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc", kUTTypePDF as String, kUTTypePlainText as String], in: .import)
+        let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc", kUTTypePDF as String, kUTTypePlainText as String, kUTTypeJPEG as String, kUTTypePNG as String, kUTTypeGIF as String, kUTTypeMP3 as String], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
         present(documentPicker, animated: true, completion: nil)
