@@ -21,7 +21,9 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         descriptionTableView.delegate = self
         descriptionTableView.dataSource = self
         
-        navigationItem.title = descriptionArr[0].1
+        var title = descriptionArr[0].1
+        title.removeSubrange(title.lastIndex(of: ".")!..<title.endIndex)
+        navigationItem.title = title
         
         descriptionTableView.reloadData()
         

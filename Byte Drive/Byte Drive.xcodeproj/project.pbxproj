@@ -29,6 +29,8 @@
 		53DC8A3F222F972400AD1D50 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC8A3E222F972400AD1D50 /* NotificationViewController.swift */; };
 		53DC8A42222F972400AD1D50 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC8A40222F972400AD1D50 /* MainInterface.storyboard */; };
 		53DC8A46222F972400AD1D50 /* BTNotifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 53DC8A37222F972400AD1D50 /* BTNotifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		53F9AE972281372A004382B8 /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F9AE962281372A004382B8 /* AddButtonView.swift */; };
+		53F9AE9B22815055004382B8 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F9AE9A22815055004382B8 /* UploadView.swift */; };
 		BC536F26222FCED400EE6998 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC536F25222FCED400EE6998 /* GoogleService-Info.plist */; };
 		E92A5321B7EC369AB5DD9B3D /* Pods_Byte_Drive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A8356173F19C4CED807D26 /* Pods_Byte_Drive.framework */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,8 @@
 		53DC8A3E222F972400AD1D50 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		53DC8A41222F972400AD1D50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		53DC8A43222F972400AD1D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53F9AE962281372A004382B8 /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
+		53F9AE9A22815055004382B8 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		603AB902188BC25818933DBE /* Pods-BTNotifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTNotifications.debug.xcconfig"; path = "Target Support Files/Pods-BTNotifications/Pods-BTNotifications.debug.xcconfig"; sourceTree = "<group>"; };
 		BC536F25222FCED400EE6998 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C2DBF34B3EF0AC001E4C1CBC /* Pods-Byte Drive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Byte Drive.release.xcconfig"; path = "Target Support Files/Pods-Byte Drive/Pods-Byte Drive.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				531ED5FA227F7D78002F2416 /* Custom Cells */,
+				53F9AE962281372A004382B8 /* AddButtonView.swift */,
+				53F9AE9A22815055004382B8 /* UploadView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -446,12 +452,14 @@
 				539FE059226BB2E500EC0860 /* LoginViewController.swift in Sources */,
 				53D8121B227EC46600CFB6CD /* DescriptionViewController.swift in Sources */,
 				5309FA03227C2DAE006366B3 /* File.swift in Sources */,
+				53F9AE9B22815055004382B8 /* UploadView.swift in Sources */,
 				531ED603227F9AFD002F2416 /* FileCell.swift in Sources */,
 				53D8121D227ED2D700CFB6CD /* DescriptionTableViewCell.swift in Sources */,
 				539FE05A226BB2E500EC0860 /* RegisterViewController.swift in Sources */,
 				5358F6E2222F4F3D00DAA52C /* AppDelegate.swift in Sources */,
 				531ED5FD227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift in Sources */,
 				539FE058226BB2E500EC0860 /* UploadViewController.swift in Sources */,
+				53F9AE972281372A004382B8 /* AddButtonView.swift in Sources */,
 				539FE057226BB2E500EC0860 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,11 @@ import MobileCoreServices
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate {
     
+    @IBOutlet var addButtonView: addButtonView!
+    @IBOutlet var uploadView: UploadView!
+    
+    @IBOutlet weak var uploadFile: UIStackView!
+    
     var uploadedData: [File] = [File]()
     
     var folderName: String = String()
@@ -26,14 +31,82 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ New", style: .done, target: self, action: #selector(uploadButton))
+        self.navigationController?.view.addSubview(uploadView)
+        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleUploadViewSwipeDown))
+        swipeDownGesture.direction = UISwipeGestureRecognizer.Direction.down
+        uploadView.addGestureRecognizer(swipeDownGesture)
+        
+        self.navigationController?.view.addSubview(addButtonView)
+        addButtonView.center = CGPoint(x: view.frame.width * 0.85,y: view.frame.height * 1.10)
+        addButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAddButtonTap)))
+        
+        uploadFile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFileUpload)))
+        
+        // navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ New", style: .done, target: self, action: #selector(uploadButton))
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "FileCell",  bundle: nil  ), forCellReuseIdentifier: "FileCell")
+        tableView.separatorStyle = .none
         
         readFilesInCurrentPath()
         
-        tableView.register(UINib(nibName: "FileCell",  bundle: nil  ), forCellReuseIdentifier: "FileCell")
+        showAddButtonView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showAddButtonView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        hideUploadView()
+        hideAddButtonView()
+    }
+    
+    @objc fileprivate func handleFileUpload() {
+        showDocumentPicker()
+    }
+    
+    @objc fileprivate func handleAddButtonTap() {
+        showUploadView()
+        hideAddButtonView()
+    }
+    
+    @objc fileprivate func handleUploadViewSwipeDown() {
+        hideUploadView()
+        showAddButtonView()
+    }
+    
+    func hideUploadView() {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
+            self.uploadView.transform = CGAffineTransform(translationX: 0, y: 0)
+        }, completion: {
+            (_) in
+            self.uploadView.isHidden = true
+        })
+    }
+    
+    func hideAddButtonView() {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
+            self.addButtonView.transform = CGAffineTransform(translationX: 0, y: 0)
+        }, completion: {
+            (_) in
+            self.addButtonView.isHidden = true
+        })
+    }
+    
+    func showUploadView() {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
+            self.uploadView.isHidden = false
+            self.uploadView.transform = CGAffineTransform(translationX: 0, y: -((self.uploadView?.frame.height ?? 0)))
+        })
+    }
+    
+    func showAddButtonView() {
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
+            self.addButtonView.isHidden = false
+            self.addButtonView.transform = CGAffineTransform(translationX: 0, y: -(self.view.frame.height * 0.20))
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +134,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // Action upon pressing upload button
-    @IBAction func uploadButton(_ sender: UIButton) {
+    func showDocumentPicker() {
         let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc", kUTTypePDF as String, kUTTypePlainText as String, kUTTypeJPEG as String, kUTTypePNG as String, kUTTypeGIF as String, kUTTypeMP3 as String], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
