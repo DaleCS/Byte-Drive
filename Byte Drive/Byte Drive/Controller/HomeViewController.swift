@@ -170,6 +170,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         newFile.size = file["size"] as! String
                         newFile.storageRef = file["storageRef"] as! String
                         newFile.databaseRef = file["databaseRef"] as! String
+                        newFile.downloadURL = file["downloadURL"] as! String
                         self.uploadedData.append(newFile)
                     }
                 }
@@ -212,7 +213,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 let newPathForThisFile = databaseRef.childByAutoId()
-                
                 var newPathForThisFileStr = newPathForThisFile.url
                 newPathForThisFileStr.removeSubrange(newPathForThisFileStr.startIndex..<newPathForThisFileStr.index(newPathForThisFileStr.startIndex, offsetBy: 34))
                 
@@ -225,7 +225,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         "storageRef": "\(userID)/\(self.currentDirectory)/\(fileName)",
                         "databaseRef": "\(newPathForThisFileStr)"
                     ] as [String : Any?]
-                databaseRef.childByAutoId().setValue(databaseUpload)
+                newPathForThisFile.setValue(databaseUpload)
+                
+                storageRef.downloadURL(completion: {
+                    (URL, Error) in
+                    if (Error != nil) {
+                        print(Error!.localizedDescription)
+                    } else if (URL != nil){
+                        let downloadURL = URL?.absoluteString
+                        newPathForThisFile.updateChildValues(["downloadURL": downloadURL!])
+                    }
+                })
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
@@ -247,7 +257,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             navigationController?.pushViewController(nextFileController, animated: true)
         } else {
             let fileDescriptionVC = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
-            fileDescriptionVC.storageRef = uploadedData[indexPath.row].storageRef
+            fileDescriptionVC.downloadURL = uploadedData[indexPath.row].downloadURL
             fileDescriptionVC.descriptionArr = [("Title ", uploadedData[indexPath.row].title), ("Type ", uploadedData[indexPath.row].type), ("Size ", "\(uploadedData[indexPath.row].size)"), ("Directory ", "\(currentDirectory)/")]
             navigationController?.pushViewController(fileDescriptionVC, animated: true)
         }

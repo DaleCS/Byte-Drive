@@ -10,7 +10,7 @@ import UIKit
 
 class DescriptionDownloadTableViewCell: UITableViewCell {
     
-    var fileStorageRef: String = String()
+    var downloadURL: String = String()
     @IBOutlet weak var downloadButton: UIButton!
     
     override func awakeFromNib() {
@@ -30,6 +30,6 @@ class DescriptionDownloadTableViewCell: UITableViewCell {
     
     @IBAction func pressedDownload(_ sender: Any) {
         // TODO: Do download here:
-        // fileStorageRef contains the reference path of the file in firebase storage
+        // downloadURL contains the file's download URL
     }
 }

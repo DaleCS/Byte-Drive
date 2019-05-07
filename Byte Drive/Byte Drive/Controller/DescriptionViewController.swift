@@ -12,7 +12,7 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var descriptionTableView: UITableView!
     
-    var storageRef: String = String()
+    var downloadURL: String = String()
     var descriptionArr: [(String, String)] = [(String, String)]()
     
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         
         if (indexPath.row == descriptionArr.count) {
             let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DescriptionDownloadCell") as! DescriptionDownloadTableViewCell
-            cell.fileStorageRef = storageRef
+            cell.downloadURL = downloadURL
             return cell
         } else {
             let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DescriptionCell") as! DescriptionTableViewCell
