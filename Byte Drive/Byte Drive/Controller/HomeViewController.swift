@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var folderName: String = String()
     var currentPath: String = String()
-    var currentDirectory: String = String()
+    var currentDirectory: String = String() 
     
     @IBOutlet weak var tableView: UITableView!
     
