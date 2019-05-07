@@ -89,6 +89,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func downloadPressed(_ sender: Any) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
         
         
     }
