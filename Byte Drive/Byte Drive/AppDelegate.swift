@@ -44,9 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 if error == nil {
                     self.userdefault.set(true, forKey: "usersignin")
                     self.userdefault.synchronize()
-                    let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let homePage = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                    self.window?.rootViewController = homePage
+//                    let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//                    let homePage = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//                    self.window?.rootViewController = homePage
                 } else {
                     print(error!.localizedDescription)
                 }

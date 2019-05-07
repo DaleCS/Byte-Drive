@@ -211,29 +211,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     print("Error: Meta data was nil")
                     return
                 }
-                
-                let newPathForThisFile = databaseRef.childByAutoId()
-                var newPathForThisFileStr = newPathForThisFile.url
-                newPathForThisFileStr.removeSubrange(newPathForThisFileStr.startIndex..<newPathForThisFileStr.index(newPathForThisFileStr.startIndex, offsetBy: 34))
-                
-                let databaseUpload =
-                    [
-                        "isFolder": false,
-                        "title": fileName,
-                        "type": "\(metaData!.contentType ?? "")",
-                        "size": "\(String(format: "%.2f", Double(metaData!.size)/1000)) KB",
-                        "storageRef": "\(userID)/\(self.currentDirectory)/\(fileName)",
-                        "databaseRef": "\(newPathForThisFileStr)"
-                    ] as [String : Any?]
-                newPathForThisFile.setValue(databaseUpload)
-                
                 storageRef.downloadURL(completion: {
                     (URL, Error) in
                     if (Error != nil) {
                         print(Error!.localizedDescription)
                     } else if (URL != nil){
                         let downloadURL = URL?.absoluteString
-                        newPathForThisFile.updateChildValues(["downloadURL": downloadURL!])
+                        
+                        let newPathForThisFile = databaseRef.childByAutoId()
+                        var newPathForThisFileStr = newPathForThisFile.url
+                        newPathForThisFileStr.removeSubrange(newPathForThisFileStr.startIndex..<newPathForThisFileStr.index(newPathForThisFileStr.startIndex, offsetBy: 34))
+                        
+                        let databaseUpload =
+                            [
+                                "isFolder": false,
+                                "title": fileName,
+                                "type": "\(metaData!.contentType ?? "")",
+                                "size": "\(String(format: "%.2f", Double(metaData!.size)/1000)) KB",
+                                "storageRef": "\(userID)/\(self.currentDirectory)/\(fileName)",
+                                "databaseRef": "\(newPathForThisFileStr)",
+                                "downloadURL": downloadURL
+                                ] as [String : Any?]
+                        newPathForThisFile.setValue(databaseUpload)
                     }
                 })
             }
