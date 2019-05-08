@@ -18,7 +18,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var addButtonView: addButtonView!
     @IBOutlet var uploadView: UploadView!
     
+    @IBOutlet weak var addFolderView: UIStackView!
     @IBOutlet weak var uploadFile: UIStackView!
+    
+    var userdefault = UserDefaults()
     
     var uploadedData: [File] = [File]()
     
@@ -41,6 +44,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAddButtonTap)))
         
         uploadFile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFileUpload)))
+        addFolderView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAddFolder)))
         
         // navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ New", style: .done, target: self, action: #selector(uploadButton))
         
@@ -63,6 +67,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         hideAddButtonView()
     }
     
+    @objc fileprivate func handleAddFolder() {
+        addNewFolder()
+    }
+    
     @objc fileprivate func handleFileUpload() {
         showDocumentPicker()
     }
@@ -75,6 +83,42 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc fileprivate func handleUploadViewSwipeDown() {
         hideUploadView()
         showAddButtonView()
+    }
+    
+    func addNewFolder() {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let oldDatabaseRef = Database.database().reference().child(currentPath).childByAutoId()
+        var oldDatabaseNewId = oldDatabaseRef.url
+        oldDatabaseNewId.removeSubrange(oldDatabaseNewId.startIndex...oldDatabaseNewId.lastIndex(of: "/")!)
+        let databaseUpload =
+            [
+                "isFolder": true,
+                "title": "NewFolder",
+                "type": "Folder",
+                "size": "0 KB",
+                "storageRef": "",
+                "databaseRef": "\(currentPath)/\(oldDatabaseNewId)",
+                "downloadURL": ""
+                ] as [String : Any?]
+        oldDatabaseRef.setValue(databaseUpload)
+        
+        let newDatabaseRef = Database.database().reference().child("FilePath/\(userID)").childByAutoId()
+        var newDatabaseRefUrl = newDatabaseRef.url
+        newDatabaseRefUrl.removeSubrange(newDatabaseRefUrl.startIndex...newDatabaseRefUrl.lastIndex(of: "/")!)
+        let newDirectory = "\(currentDirectory)/NewFolder"
+        let newFolder = [
+            "title": "NewFolder",
+            "directory": newDirectory
+        ]
+        newDatabaseRef.setValue(newFolder)
+        
+        let newHomeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        newHomeVC.currentPath = "FilePath/\(userID)/\(newDatabaseRefUrl)"
+        newHomeVC.folderName = "NewFolder"
+        newHomeVC.currentDirectory = newDirectory
+        self.navigationController?.pushViewController(newHomeVC, animated: true)
+        
     }
     
     func hideUploadView() {
@@ -117,7 +161,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell") as! FileCell
         
         var title = uploadedData[indexPath.row].title
-        title.removeSubrange(title.lastIndex(of: ".")!..<title.endIndex)
+        if (title.lastIndex(of: ".") != nil) {
+            title.removeSubrange(title.lastIndex(of: ".")!..<title.endIndex)
+        }
         cell.title.text = title
         
         switch(uploadedData[indexPath.row].type) {
@@ -146,6 +192,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         do {
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance()?.signOut()
+            self.userdefault.set(false, forKey: "usersignin")
+            self.userdefault.synchronize()
             performSegue(withIdentifier: "logoutFromHome", sender: self)
         } catch {
             print("Found errors: Failed to sign out")

@@ -22,6 +22,7 @@
 		539FE058226BB2E500EC0860 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE054226BB2E500EC0860 /* UploadViewController.swift */; };
 		539FE059226BB2E500EC0860 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE055226BB2E500EC0860 /* LoginViewController.swift */; };
 		539FE05A226BB2E500EC0860 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE056226BB2E500EC0860 /* RegisterViewController.swift */; };
+		53A1282E2282B13E0042E4A8 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A1282D2282B13E0042E4A8 /* AboutViewController.swift */; };
 		53D8121B227EC46600CFB6CD /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8121A227EC46600CFB6CD /* DescriptionViewController.swift */; };
 		53D8121D227ED2D700CFB6CD /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8121C227ED2D700CFB6CD /* DescriptionTableViewCell.swift */; };
 		53DC8A3A222F972400AD1D50 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DC8A39222F972400AD1D50 /* UserNotifications.framework */; };
@@ -78,6 +79,7 @@
 		539FE054226BB2E500EC0860 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		539FE055226BB2E500EC0860 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		539FE056226BB2E500EC0860 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		53A1282D2282B13E0042E4A8 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		53D8121A227EC46600CFB6CD /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		53D8121C227ED2D700CFB6CD /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		53DC8A37222F972400AD1D50 /* BTNotifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BTNotifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 				539FE055226BB2E500EC0860 /* LoginViewController.swift */,
 				539FE056226BB2E500EC0860 /* RegisterViewController.swift */,
 				53D8121A227EC46600CFB6CD /* DescriptionViewController.swift */,
+				53A1282D2282B13E0042E4A8 /* AboutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				531ED5FD227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift in Sources */,
 				539FE058226BB2E500EC0860 /* UploadViewController.swift in Sources */,
 				53F9AE972281372A004382B8 /* AddButtonView.swift in Sources */,
+				53A1282E2282B13E0042E4A8 /* AboutViewController.swift in Sources */,
 				539FE057226BB2E500EC0860 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

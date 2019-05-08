@@ -40,13 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         } else {
             guard let authentication = user.authentication else {return}
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-            Auth.auth().signInAndRetrieveData(with: credential){ (result, error) in
+            Auth.auth().signIn(with: credential){ (result, error) in
                 if error == nil {
                     self.userdefault.set(true, forKey: "usersignin")
                     self.userdefault.synchronize()
-//                    let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let homePage = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//                    self.window?.rootViewController = homePage
+                    let loginVC = self.window?.rootViewController as! LoginViewController
+                    loginVC.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
                 } else {
                     print(error!.localizedDescription)
                 }

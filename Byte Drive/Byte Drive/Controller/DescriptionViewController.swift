@@ -35,7 +35,6 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if (indexPath.row == descriptionArr.count) {
             let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DescriptionDownloadCell") as! DescriptionDownloadTableViewCell
             cell.downloadURL = downloadURL
