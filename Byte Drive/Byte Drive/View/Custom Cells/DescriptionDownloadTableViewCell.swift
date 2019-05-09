@@ -10,6 +10,7 @@ import UIKit
 
 class DescriptionDownloadTableViewCell: UITableViewCell {
     
+    
     var downloadComplete = false
     var downloadURL: String = String()
     @IBOutlet weak var downloadButton: UIButton!
@@ -36,17 +37,15 @@ class DescriptionDownloadTableViewCell: UITableViewCell {
     }
     
     @IBAction func pressedDownload(_ sender: Any) {
-        // TODO: Do download here:
-        // downloadURL contains the file's download URL
-        
         print("Downloading File")
         downloadComplete = true
-        
+        //Segue to ReaderViewController and passing in downloadURL
     }
     @IBAction func pressedView(_ sender: Any) {
         
         if (downloadComplete == true) {
             print("View file")
+            
         } else {
             print("File was not Downloaded")
         }
