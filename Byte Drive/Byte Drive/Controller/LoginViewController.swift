@@ -35,6 +35,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDel
         GIDSignIn.sharedInstance().signInSilently()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if let _ = Auth.auth().currentUser {
+            print(userdefault.bool(forKey: "usersignin") == true)
+            performSegue(withIdentifier: "toHomeFromLogin", sender: self)
+        }
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5) {
             textField.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -96,12 +103,22 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDel
                         print("Unhandled error: \(error!)")
                     }
                 } else {
-                    print("Successfully signed in")
                     self.performSegue(withIdentifier: "toHomeFromLogin", sender: self)
                 }
             }
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toHomeFromLogin") {
+            let fileBrowsingNavController = segue.destination as! UINavigationController
+            let firstHomeViewController = fileBrowsingNavController.viewControllers.first as! HomeViewController
+            
+            guard let userID = Auth.auth().currentUser?.uid else { return }
+            firstHomeViewController.currentPath = "FilePath/\(userID)/root"
+            firstHomeViewController.folderName = "root"
+            firstHomeViewController.currentDirectory = "root"
+        }
+    }
     
 }

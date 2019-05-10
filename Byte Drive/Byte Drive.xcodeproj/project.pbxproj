@@ -8,19 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		04D3CCC1347CD3E59AFECE6B /* Pods_BTNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FFDA33353CB118ABFC7CA1 /* Pods_BTNotifications.framework */; };
+		5309FA03227C2DAE006366B3 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309FA02227C2DAE006366B3 /* File.swift */; };
+		531ED5FD227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531ED5FB227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift */; };
+		531ED5FE227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531ED5FC227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib */; };
+		531ED600227F99BE002F2416 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531ED5FF227F99BE002F2416 /* DescriptionCell.xib */; };
+		531ED603227F9AFD002F2416 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531ED601227F9AFD002F2416 /* FileCell.swift */; };
+		531ED604227F9AFD002F2416 /* FileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531ED602227F9AFD002F2416 /* FileCell.xib */; };
+		531ED605227FA88F002F2416 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5358F6E8222F4F3E00DAA52C /* Assets.xcassets */; };
 		5358F6E2222F4F3D00DAA52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358F6E1222F4F3D00DAA52C /* AppDelegate.swift */; };
 		5358F6E7222F4F3D00DAA52C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5358F6E5222F4F3D00DAA52C /* Main.storyboard */; };
-		5358F6E9222F4F3E00DAA52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5358F6E8222F4F3E00DAA52C /* Assets.xcassets */; };
 		5358F6EC222F4F3E00DAA52C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5358F6EA222F4F3E00DAA52C /* LaunchScreen.storyboard */; };
 		539FE057226BB2E500EC0860 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE053226BB2E500EC0860 /* HomeViewController.swift */; };
 		539FE058226BB2E500EC0860 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE054226BB2E500EC0860 /* UploadViewController.swift */; };
 		539FE059226BB2E500EC0860 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE055226BB2E500EC0860 /* LoginViewController.swift */; };
 		539FE05A226BB2E500EC0860 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539FE056226BB2E500EC0860 /* RegisterViewController.swift */; };
+		53A1282E2282B13E0042E4A8 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A1282D2282B13E0042E4A8 /* AboutViewController.swift */; };
+		53D8121B227EC46600CFB6CD /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8121A227EC46600CFB6CD /* DescriptionViewController.swift */; };
+		53D8121D227ED2D700CFB6CD /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8121C227ED2D700CFB6CD /* DescriptionTableViewCell.swift */; };
 		53DC8A3A222F972400AD1D50 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DC8A39222F972400AD1D50 /* UserNotifications.framework */; };
 		53DC8A3C222F972400AD1D50 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DC8A3B222F972400AD1D50 /* UserNotificationsUI.framework */; };
 		53DC8A3F222F972400AD1D50 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC8A3E222F972400AD1D50 /* NotificationViewController.swift */; };
 		53DC8A42222F972400AD1D50 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53DC8A40222F972400AD1D50 /* MainInterface.storyboard */; };
 		53DC8A46222F972400AD1D50 /* BTNotifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 53DC8A37222F972400AD1D50 /* BTNotifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		53F9AE972281372A004382B8 /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F9AE962281372A004382B8 /* AddButtonView.swift */; };
+		53F9AE9B22815055004382B8 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F9AE9A22815055004382B8 /* UploadView.swift */; };
 		BC536F26222FCED400EE6998 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC536F25222FCED400EE6998 /* GoogleService-Info.plist */; };
 		E92A5321B7EC369AB5DD9B3D /* Pods_Byte_Drive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A8356173F19C4CED807D26 /* Pods_Byte_Drive.framework */; };
 /* End PBXBuildFile section */
@@ -52,6 +63,12 @@
 /* Begin PBXFileReference section */
 		246F4384BD23F569F1194F59 /* Pods-Byte Drive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Byte Drive.debug.xcconfig"; path = "Target Support Files/Pods-Byte Drive/Pods-Byte Drive.debug.xcconfig"; sourceTree = "<group>"; };
 		369A467245D69A02C3C14552 /* Pods-BTNotifications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTNotifications.release.xcconfig"; path = "Target Support Files/Pods-BTNotifications/Pods-BTNotifications.release.xcconfig"; sourceTree = "<group>"; };
+		5309FA02227C2DAE006366B3 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		531ED5FB227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionDownloadTableViewCell.swift; sourceTree = "<group>"; };
+		531ED5FC227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionDownloadTableViewCell.xib; sourceTree = "<group>"; };
+		531ED5FF227F99BE002F2416 /* DescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
+		531ED601227F9AFD002F2416 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
+		531ED602227F9AFD002F2416 /* FileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileCell.xib; sourceTree = "<group>"; };
 		5358F6DE222F4F3D00DAA52C /* Byte Drive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Byte Drive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5358F6E1222F4F3D00DAA52C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5358F6E6222F4F3D00DAA52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,12 +79,17 @@
 		539FE054226BB2E500EC0860 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		539FE055226BB2E500EC0860 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		539FE056226BB2E500EC0860 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		53A1282D2282B13E0042E4A8 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		53D8121A227EC46600CFB6CD /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		53D8121C227ED2D700CFB6CD /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		53DC8A37222F972400AD1D50 /* BTNotifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BTNotifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DC8A39222F972400AD1D50 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		53DC8A3B222F972400AD1D50 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		53DC8A3E222F972400AD1D50 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		53DC8A41222F972400AD1D50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		53DC8A43222F972400AD1D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53F9AE962281372A004382B8 /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
+		53F9AE9A22815055004382B8 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		603AB902188BC25818933DBE /* Pods-BTNotifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTNotifications.debug.xcconfig"; path = "Target Support Files/Pods-BTNotifications/Pods-BTNotifications.debug.xcconfig"; sourceTree = "<group>"; };
 		BC536F25222FCED400EE6998 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C2DBF34B3EF0AC001E4C1CBC /* Pods-Byte Drive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Byte Drive.release.xcconfig"; path = "Target Support Files/Pods-Byte Drive/Pods-Byte Drive.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +119,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		531ED5FA227F7D78002F2416 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				53D8121C227ED2D700CFB6CD /* DescriptionTableViewCell.swift */,
+				531ED5FB227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift */,
+				531ED5FC227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib */,
+				531ED5FF227F99BE002F2416 /* DescriptionCell.xib */,
+				531ED601227F9AFD002F2416 /* FileCell.swift */,
+				531ED602227F9AFD002F2416 /* FileCell.xib */,
+			);
+			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		5358F6D5222F4F3D00DAA52C = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +175,8 @@
 				539FE054226BB2E500EC0860 /* UploadViewController.swift */,
 				539FE055226BB2E500EC0860 /* LoginViewController.swift */,
 				539FE056226BB2E500EC0860 /* RegisterViewController.swift */,
+				53D8121A227EC46600CFB6CD /* DescriptionViewController.swift */,
+				53A1282D2282B13E0042E4A8 /* AboutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -147,6 +184,9 @@
 		539FE05B226BB2FE00EC0860 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				531ED5FA227F7D78002F2416 /* Custom Cells */,
+				53F9AE962281372A004382B8 /* AddButtonView.swift */,
+				53F9AE9A22815055004382B8 /* UploadView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -154,6 +194,7 @@
 		539FE05C226BB30600EC0860 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5309FA02227C2DAE006366B3 /* File.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,9 +324,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				531ED604227F9AFD002F2416 /* FileCell.xib in Resources */,
 				5358F6EC222F4F3E00DAA52C /* LaunchScreen.storyboard in Resources */,
+				531ED5FE227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib in Resources */,
 				BC536F26222FCED400EE6998 /* GoogleService-Info.plist in Resources */,
-				5358F6E9222F4F3E00DAA52C /* Assets.xcassets in Resources */,
+				531ED605227FA88F002F2416 /* Assets.xcassets in Resources */,
+				531ED600227F99BE002F2416 /* DescriptionCell.xib in Resources */,
 				5358F6E7222F4F3D00DAA52C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,9 +453,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				539FE059226BB2E500EC0860 /* LoginViewController.swift in Sources */,
+				53D8121B227EC46600CFB6CD /* DescriptionViewController.swift in Sources */,
+				5309FA03227C2DAE006366B3 /* File.swift in Sources */,
+				53F9AE9B22815055004382B8 /* UploadView.swift in Sources */,
+				531ED603227F9AFD002F2416 /* FileCell.swift in Sources */,
+				53D8121D227ED2D700CFB6CD /* DescriptionTableViewCell.swift in Sources */,
 				539FE05A226BB2E500EC0860 /* RegisterViewController.swift in Sources */,
 				5358F6E2222F4F3D00DAA52C /* AppDelegate.swift in Sources */,
+				531ED5FD227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift in Sources */,
 				539FE058226BB2E500EC0860 /* UploadViewController.swift in Sources */,
+				53F9AE972281372A004382B8 /* AddButtonView.swift in Sources */,
+				53A1282E2282B13E0042E4A8 /* AboutViewController.swift in Sources */,
 				539FE057226BB2E500EC0860 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
