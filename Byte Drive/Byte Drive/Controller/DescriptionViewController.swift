@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
 class DescriptionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-
     @IBOutlet weak var descriptionTableView: UITableView!
     
     var databaseRef: String = String()
@@ -34,16 +33,15 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         descriptionTableView.register(UINib(nibName: "DescriptionDownloadTableViewCell",  bundle: nil  ), forCellReuseIdentifier: "DescriptionDownloadCell")
     }
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return descriptionArr.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == descriptionArr.count) {
-            let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DescriptionDownloadCell") as! DescriptionDownloadTableViewCell
-            cell.databaseRef = databaseRef
-            cell.storageRef = storageRef
-            cell.downloadURL = downloadURL
+            let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DownloadCell")!
             return cell
         } else {
             let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DescriptionCell") as! DescriptionTableViewCell
@@ -51,6 +49,35 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
             cell.category.text = "\(descriptionArr[indexPath.row].0)"
             cell.value.text = "\(descriptionArr[indexPath.row].1)"
             return cell
+        }
+    }
+    
+    @IBAction func downloadTapped(_ sender: Any) {
+        // TODO: Do download here
+    }
+    
+    @IBAction func viewTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let readerVC = storyboard.instantiateViewController(withIdentifier: "ReaderViewController") as! ReaderViewController
+        readerVC.downloadURL = downloadURL
+        if let navController = self.navigationController {
+            navController.pushViewController(readerVC, animated: true)
+        }
+    }
+    
+    @IBAction func deleteTapped(_ sender: Any) {
+        let firebaseDataRef = Database.database().reference().child(databaseRef)
+        let firebaseStorageRef = Storage.storage().reference().child(storageRef)
+        
+        firebaseDataRef.removeValue()
+        firebaseStorageRef.delete { (error) in
+            if (error != nil) {
+                print("Error: Errors were encountered in deleting file")
+            } else {
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
+            }
         }
     }
 }

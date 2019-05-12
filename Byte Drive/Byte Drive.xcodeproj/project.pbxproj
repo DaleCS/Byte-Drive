@@ -10,8 +10,7 @@
 		04D3CCC1347CD3E59AFECE6B /* Pods_BTNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FFDA33353CB118ABFC7CA1 /* Pods_BTNotifications.framework */; };
 		5309FA03227C2DAE006366B3 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309FA02227C2DAE006366B3 /* File.swift */; };
 		531769462286226900DAB223 /* AddNewFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531769452286226900DAB223 /* AddNewFolderView.swift */; };
-		531ED5FD227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531ED5FB227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift */; };
-		531ED5FE227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531ED5FC227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib */; };
+		5317694C2287D61A00DAB223 /* ReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317694B2287D61A00DAB223 /* ReaderViewController.swift */; };
 		531ED600227F99BE002F2416 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531ED5FF227F99BE002F2416 /* DescriptionCell.xib */; };
 		531ED603227F9AFD002F2416 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531ED601227F9AFD002F2416 /* FileCell.swift */; };
 		531ED604227F9AFD002F2416 /* FileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531ED602227F9AFD002F2416 /* FileCell.xib */; };
@@ -65,8 +64,7 @@
 		369A467245D69A02C3C14552 /* Pods-BTNotifications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTNotifications.release.xcconfig"; path = "Target Support Files/Pods-BTNotifications/Pods-BTNotifications.release.xcconfig"; sourceTree = "<group>"; };
 		5309FA02227C2DAE006366B3 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		531769452286226900DAB223 /* AddNewFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFolderView.swift; sourceTree = "<group>"; };
-		531ED5FB227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionDownloadTableViewCell.swift; sourceTree = "<group>"; };
-		531ED5FC227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionDownloadTableViewCell.xib; sourceTree = "<group>"; };
+		5317694B2287D61A00DAB223 /* ReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewController.swift; sourceTree = "<group>"; };
 		531ED5FF227F99BE002F2416 /* DescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
 		531ED601227F9AFD002F2416 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		531ED602227F9AFD002F2416 /* FileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileCell.xib; sourceTree = "<group>"; };
@@ -123,8 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				53D8121C227ED2D700CFB6CD /* DescriptionTableViewCell.swift */,
-				531ED5FB227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift */,
-				531ED5FC227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib */,
 				531ED5FF227F99BE002F2416 /* DescriptionCell.xib */,
 				531ED601227F9AFD002F2416 /* FileCell.swift */,
 				531ED602227F9AFD002F2416 /* FileCell.xib */,
@@ -176,6 +172,7 @@
 				539FE056226BB2E500EC0860 /* RegisterViewController.swift */,
 				53D8121A227EC46600CFB6CD /* DescriptionViewController.swift */,
 				53A1282D2282B13E0042E4A8 /* AboutViewController.swift */,
+				5317694B2287D61A00DAB223 /* ReaderViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -326,7 +323,6 @@
 			files = (
 				531ED604227F9AFD002F2416 /* FileCell.xib in Resources */,
 				5358F6EC222F4F3E00DAA52C /* LaunchScreen.storyboard in Resources */,
-				531ED5FE227F7DA7002F2416 /* DescriptionDownloadTableViewCell.xib in Resources */,
 				BC536F26222FCED400EE6998 /* GoogleService-Info.plist in Resources */,
 				531ED605227FA88F002F2416 /* Assets.xcassets in Resources */,
 				531ED600227F99BE002F2416 /* DescriptionCell.xib in Resources */,
@@ -460,7 +456,7 @@
 				53D8121D227ED2D700CFB6CD /* DescriptionTableViewCell.swift in Sources */,
 				539FE05A226BB2E500EC0860 /* RegisterViewController.swift in Sources */,
 				5358F6E2222F4F3D00DAA52C /* AppDelegate.swift in Sources */,
-				531ED5FD227F7DA7002F2416 /* DescriptionDownloadTableViewCell.swift in Sources */,
+				5317694C2287D61A00DAB223 /* ReaderViewController.swift in Sources */,
 				531769462286226900DAB223 /* AddNewFolderView.swift in Sources */,
 				53F9AE972281372A004382B8 /* AddButtonView.swift in Sources */,
 				53A1282E2282B13E0042E4A8 /* AboutViewController.swift in Sources */,

@@ -31,6 +31,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var folderName: String = String()
     var currentPath: String = String()
     var currentDirectory: String = String()
+    var containingPath: String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,6 +126,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func addNewFolder() {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
+        let newDatabaseRef = Database.database().reference().child("FilePath/\(userID)").childByAutoId()
+        var newDatabaseRefUrl = newDatabaseRef.url
+        newDatabaseRefUrl.removeSubrange(newDatabaseRefUrl.startIndex...newDatabaseRefUrl.lastIndex(of: "/")!)
+        
         let oldDatabaseRef = Database.database().reference().child(currentPath).childByAutoId()
         var oldDatabaseNewId = oldDatabaseRef.url
         oldDatabaseNewId.removeSubrange(oldDatabaseNewId.startIndex...oldDatabaseNewId.lastIndex(of: "/")!)
@@ -136,23 +141,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 "size": "0 KB",
                 "storageRef": "",
                 "databaseRef": "\(currentPath)/\(oldDatabaseNewId)",
+                "folderPath": "FilePath/\(userID)/\(newDatabaseRefUrl)",
                 "downloadURL": ""
-                ] as [String : Any?]
+            ] as [String : Any?]
         oldDatabaseRef.setValue(databaseUpload)
         
-        let newDatabaseRef = Database.database().reference().child("FilePath/\(userID)").childByAutoId()
-        var newDatabaseRefUrl = newDatabaseRef.url
-        newDatabaseRefUrl.removeSubrange(newDatabaseRefUrl.startIndex...newDatabaseRefUrl.lastIndex(of: "/")!)
-        let newDirectory = "\(currentDirectory)/NewFolder"
+        let newDirectory = "\(currentDirectory)/\(newFolderView.titleTextField.text ?? "")"
         let newFolder = [
-            "title": "NewFolder",
+            "title": newFolderView.titleTextField.text ?? "",
             "directory": newDirectory
         ]
         newDatabaseRef.setValue(newFolder)
         
         let newHomeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        newHomeVC.containingPath = "\(currentPath)/\(oldDatabaseNewId)"
         newHomeVC.currentPath = "FilePath/\(userID)/\(newDatabaseRefUrl)"
-        newHomeVC.folderName = "NewFolder"
+        newHomeVC.folderName = newFolderView.titleTextField.text ?? ""
         newHomeVC.currentDirectory = newDirectory
         self.navigationController?.pushViewController(newHomeVC, animated: true)
         
@@ -207,40 +211,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addNewFolder()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return uploadedData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell") as! FileCell
-        
-        var title = uploadedData[indexPath.row].title
-        if (title.lastIndex(of: ".") != nil) {
-            title.removeSubrange(title.lastIndex(of: ".")!..<title.endIndex)
-        }
-        cell.title.text = title
-        
-        switch(uploadedData[indexPath.row].type) {
-        case "application/pdf":
-            cell.icon.image = #imageLiteral(resourceName: "pdf")
-        case "text/plain":
-            cell.icon.image = #imageLiteral(resourceName: "txt")
-        case "Folder":
-            cell.icon.image = #imageLiteral(resourceName: "folder")
-        default:
-            cell.icon.image = #imageLiteral(resourceName: "file")
-        }
-        return cell
-    }
-    
-    // Action upon pressing upload button
-    func showDocumentPicker() {
-        let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc", kUTTypePDF as String, kUTTypePlainText as String, kUTTypeJPEG as String, kUTTypePNG as String, kUTTypeGIF as String, kUTTypeMP3 as String], in: .import)
-        documentPicker.delegate = self
-        documentPicker.allowsMultipleSelection = false
-        present(documentPicker, animated: true, completion: nil)
-    }
-    
     // Action upon pressing log out button
     @IBAction func logoutPressed(_ sender: UIButton) {
         do {
@@ -252,6 +222,91 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } catch {
             print("Found errors: Failed to sign out")
         }
+    }
+    
+    @IBAction func deleteFolderTapped(_ sender: Any) {
+        if let userID = Auth.auth().currentUser?.uid {
+            let currentStorageDirectory = "\(userID)/\(currentDirectory)"
+            
+            print(currentPath)
+            
+            let firebaseDataRef = Database.database().reference().child(currentPath)
+            let firebaseDataRefContaining = Database.database().reference().child(containingPath)
+            let firebaseStorageRef = Storage.storage().reference().child(currentStorageDirectory)
+            
+            firebaseDataRef.removeValue()
+            firebaseDataRefContaining.removeValue()
+            firebaseStorageRef.delete { (error) in
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (currentDirectory == "root") {
+            return uploadedData.count
+        } else {
+            return uploadedData.count + 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (currentDirectory != "root" && indexPath.row == uploadedData.count) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteFolderCell")!
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell") as! FileCell
+            
+            var title = uploadedData[indexPath.row].title
+            if (title.lastIndex(of: ".") != nil) {
+                title.removeSubrange(title.lastIndex(of: ".")!..<title.endIndex)
+            }
+            cell.title.text = title
+            
+            switch(uploadedData[indexPath.row].type) {
+            case "application/pdf":
+                cell.icon.image = #imageLiteral(resourceName: "pdf")
+            case "text/plain":
+                cell.icon.image = #imageLiteral(resourceName: "txt")
+            case "audio/mpeg":
+                cell.icon.image = #imageLiteral(resourceName: "mp3")
+            case "Folder":
+                cell.icon.image = #imageLiteral(resourceName: "folder")
+            case "image/png", "image/jpeg", "image/gif":
+                cell.icon.image = #imageLiteral(resourceName: "image")
+            default:
+                cell.icon.image = #imageLiteral(resourceName: "file")
+            }
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (uploadedData[indexPath.row].isFolder == true) {
+            let nextFileController = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            nextFileController.containingPath = uploadedData[indexPath.row].databaseRef
+            nextFileController.currentPath = uploadedData[indexPath.row].folderPath
+            nextFileController.folderName = uploadedData[indexPath.row].title
+            nextFileController.currentDirectory = "\(currentDirectory)/\(uploadedData[indexPath.row].title)"
+            navigationController?.pushViewController(nextFileController, animated: true)
+        } else {
+            let fileDescriptionVC = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
+            fileDescriptionVC.downloadURL = uploadedData[indexPath.row].downloadURL
+            fileDescriptionVC.databaseRef = uploadedData[indexPath.row].databaseRef
+            fileDescriptionVC.storageRef = uploadedData[indexPath.row].storageRef
+            fileDescriptionVC.descriptionArr = [("Title ", uploadedData[indexPath.row].title), ("Type ", uploadedData[indexPath.row].type), ("Size ", "\(uploadedData[indexPath.row].size)"), ("Directory ", "\(currentDirectory)/")]
+            navigationController?.pushViewController(fileDescriptionVC, animated: true)
+        }
+    }
+    
+    // Action upon pressing upload button
+    func showDocumentPicker() {
+        let documentPicker = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc", kUTTypePDF as String, kUTTypePlainText as String, kUTTypeJPEG as String, kUTTypePNG as String, kUTTypeGIF as String, kUTTypeMP3 as String], in: .import)
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        present(documentPicker, animated: true, completion: nil)
     }
     
     // Fetches the entries in current path
@@ -272,11 +327,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         newFile.size = file["size"] as! String
                         newFile.storageRef = file["storageRef"] as! String
                         newFile.databaseRef = file["databaseRef"] as! String
+                        newFile.folderPath = file["folderPath"] as! String
                         newFile.downloadURL = file["downloadURL"] as! String
                         self.uploadedData.append(newFile)
                     }
                 }
-            } else {
+            } else if (self.currentDirectory == "root") {
                 databaseRef.setValue([
                     "title": "\(self.folderName)",
                     "directory": "\(self.currentDirectory)"
@@ -332,8 +388,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 "size": "\(String(format: "%.2f", Double(metaData!.size)/1000)) KB",
                                 "storageRef": "\(userID)/\(self.currentDirectory)/\(fileName)",
                                 "databaseRef": "\(newPathForThisFileStr)",
+                                "folderPath": "",
                                 "downloadURL": downloadURL
-                                ] as [String : Any?]
+                            ] as [String : Any?]
                         newPathForThisFile.setValue(databaseUpload)
                     }
                 })
@@ -348,23 +405,4 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         verifyUploadAlertController.addAction(cancelAction)
         self.present(verifyUploadAlertController, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (uploadedData[indexPath.row].isFolder == true) {
-            let nextFileController = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-            nextFileController.currentPath = uploadedData[indexPath.row].databaseRef
-            nextFileController.folderName = uploadedData[indexPath.row].title
-            nextFileController.currentDirectory = "\(currentDirectory)/\(uploadedData[indexPath.row].title)"
-            navigationController?.pushViewController(nextFileController, animated: true)
-        } else {
-            let fileDescriptionVC = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
-            fileDescriptionVC.downloadURL = uploadedData[indexPath.row].downloadURL
-            fileDescriptionVC.databaseRef = uploadedData[indexPath.row].databaseRef
-            fileDescriptionVC.storageRef = uploadedData[indexPath.row].storageRef
-            fileDescriptionVC.descriptionArr = [("Title ", uploadedData[indexPath.row].title), ("Type ", uploadedData[indexPath.row].type), ("Size ", "\(uploadedData[indexPath.row].size)"), ("Directory ", "\(currentDirectory)/")]
-            navigationController?.pushViewController(fileDescriptionVC, animated: true)
-        }
-    }
 }
-
-// What is user research

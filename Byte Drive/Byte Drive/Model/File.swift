@@ -17,6 +17,7 @@ struct File {
     var storageRef: String
     var databaseRef: String
     var downloadURL: String
+    var folderPath: String
     
     init() {
         isFolder = false
@@ -25,6 +26,7 @@ struct File {
         size = String()
         storageRef = String()
         databaseRef = String()
+        folderPath = String()
         downloadURL = String()
     }
 }

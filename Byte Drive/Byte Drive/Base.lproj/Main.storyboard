@@ -363,6 +363,38 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qcR-v8-R6O">
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeleteFolderCell" id="i5v-5c-gPn">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i5v-5c-gPn" id="MeS-Yh-Xg4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjs-y5-6lH">
+                                                    <rect key="frame" x="164" y="6" width="46" height="30"/>
+                                                    <color key="backgroundColor" red="0.83921568629999999" green="0.18823529410000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                    <state key="normal" title="Delete Folder">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="deleteFolderTapped:" destination="Bhc-Wa-Al0" eventType="touchUpInside" id="2DW-Ig-fcy"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sjs-y5-6lH" firstAttribute="centerX" secondItem="MeS-Yh-Xg4" secondAttribute="centerX" id="7bo-Yo-NPt"/>
+                                                <constraint firstItem="sjs-y5-6lH" firstAttribute="centerY" secondItem="MeS-Yh-Xg4" secondAttribute="centerY" id="bux-kj-EXu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -590,6 +622,73 @@
                                             <outlet property="value" destination="lHc-j7-xmb" id="G5L-gI-M6a"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DownloadCell" id="Gdx-lF-PyO">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gdx-lF-PyO" id="dM8-Si-fgP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="zUV-H8-86D">
+                                                    <rect key="frame" x="79" y="7" width="216" height="28"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJX-uz-J1t">
+                                                            <rect key="frame" x="0.0" y="0.0" width="55" height="28"/>
+                                                            <color key="backgroundColor" red="0.75294117647058822" green="0.22352941176470587" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" title="Delete">
+                                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="deleteTapped:" destination="DCO-DO-EEF" eventType="touchUpInside" id="xzO-49-UHi"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Too-de-7F1">
+                                                            <rect key="frame" x="73.999999999999986" y="0.0" width="44" height="28"/>
+                                                            <color key="backgroundColor" red="0.29803921570000003" green="0.26274509800000001" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" title="View">
+                                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="viewTapped:" destination="DCO-DO-EEF" eventType="touchUpInside" id="Il0-bj-s3H"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Crv-IQ-HU5">
+                                                            <rect key="frame" x="137" y="0.0" width="79" height="28"/>
+                                                            <color key="backgroundColor" red="0.29803921570000003" green="0.26274509800000001" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                            <state key="normal" title="Download">
+                                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="downloadTapped:" destination="DCO-DO-EEF" eventType="touchUpInside" id="bWZ-TO-HUA"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zUV-H8-86D" firstAttribute="centerY" secondItem="dM8-Si-fgP" secondAttribute="centerY" id="5UH-3I-WDM"/>
+                                                <constraint firstItem="zUV-H8-86D" firstAttribute="centerX" secondItem="dM8-Si-fgP" secondAttribute="centerX" id="7jt-Oe-oMc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -604,11 +703,46 @@
                     </view>
                     <connections>
                         <outlet property="descriptionTableView" destination="Zmm-C6-u0a" id="JiI-Zm-UyW"/>
+                        <segue destination="HCW-LJ-yqX" kind="show" id="ybP-cy-Aai"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZm-bS-MzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3520.8000000000002" y="22.906403940886701"/>
+        </scene>
+        <!--Reader View Controller-->
+        <scene sceneID="NK0-Tu-a03">
+            <objects>
+                <viewController storyboardIdentifier="ReaderViewController" id="HCW-LJ-yqX" customClass="ReaderViewController" customModule="Byte_Drive" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HKl-Yj-Dzd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Agj-RA-FLv">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xgh-3k-PBL" firstAttribute="bottom" secondItem="Agj-RA-FLv" secondAttribute="bottom" id="3e0-dH-c8j"/>
+                            <constraint firstItem="Agj-RA-FLv" firstAttribute="top" secondItem="xgh-3k-PBL" secondAttribute="top" id="6tc-lY-hDC"/>
+                            <constraint firstItem="xgh-3k-PBL" firstAttribute="trailing" secondItem="Agj-RA-FLv" secondAttribute="trailing" id="a4c-AS-ome"/>
+                            <constraint firstItem="Agj-RA-FLv" firstAttribute="leading" secondItem="xgh-3k-PBL" secondAttribute="leading" id="gJb-wt-SPX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xgh-3k-PBL"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Agj-RA-FLv" id="kPs-E5-cES"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1h4-x0-1Ut" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3520.8000000000002" y="742.61083743842369"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q4Z-Lt-ttd">
