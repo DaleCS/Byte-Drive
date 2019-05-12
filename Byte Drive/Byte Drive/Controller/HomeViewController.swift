@@ -17,9 +17,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet var addButtonView: addButtonView!
     @IBOutlet var uploadView: UploadView!
+    @IBOutlet var newFolderView: AddNewFolderView!
     
     @IBOutlet weak var addFolderView: UIStackView!
     @IBOutlet weak var uploadFile: UIStackView!
+    
+    @IBOutlet weak var tableView: UITableView!
     
     var userdefault = UserDefaults()
     
@@ -27,27 +30,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var folderName: String = String()
     var currentPath: String = String()
-    var currentDirectory: String = String() 
-    
-    @IBOutlet weak var tableView: UITableView!
+    var currentDirectory: String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Add all the views
         self.navigationController?.view.addSubview(uploadView)
-        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleUploadViewSwipeDown))
-        swipeDownGesture.direction = UISwipeGestureRecognizer.Direction.down
-        uploadView.addGestureRecognizer(swipeDownGesture)
-        
+        self.navigationController?.view.addSubview(newFolderView)
         self.navigationController?.view.addSubview(addButtonView)
+        
+        // Add uploadview and add swipedown gesture
+        let uploadViewSwipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleUploadViewSwipeDown))
+        uploadViewSwipeDown.direction = UISwipeGestureRecognizer.Direction.down
+        uploadView.addGestureRecognizer(uploadViewSwipeDown)
+        
+        // Add newFolderView and add swipe down gesture
+        let newFolderViewSwipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleNewFolderViewSwipeDown))
+        newFolderViewSwipeDown.direction = UISwipeGestureRecognizer.Direction.down
+        newFolderView.addGestureRecognizer(newFolderViewSwipeDown)
+        
+        // Add addButtonView and add tapGesture
         addButtonView.center = CGPoint(x: view.frame.width * 0.85,y: view.frame.height * 1.10)
         addButtonView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAddButtonTap)))
         
+        // Add the tap gesture recognizer to uploadFile StackView
         uploadFile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFileUpload)))
         addFolderView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAddFolder)))
         
-        // navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ New", style: .done, target: self, action: #selector(uploadButton))
-        
+        // Add tableview Delegate and data source
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "FileCell",  bundle: nil  ), forCellReuseIdentifier: "FileCell")
@@ -65,26 +76,52 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillDisappear(_ animated: Bool) {
         hideUploadView()
         hideAddButtonView()
+        hideNewFolderView()
     }
     
+    // Handler for when the user taps the 'Add folder' stack view in UploadView
     @objc fileprivate func handleAddFolder() {
-        addNewFolder()
+        showNewFolderTitle()
+        // addNewFolder()
     }
     
+    // Handler for when the user taps the 'Upload File' stack view in UploadView
     @objc fileprivate func handleFileUpload() {
         showDocumentPicker()
+        hideUploadView()
     }
     
+    // Handler for when the user taps on the 'Plus button' AKA 'Add button' AKA 'Circle plus button'
     @objc fileprivate func handleAddButtonTap() {
         showUploadView()
         hideAddButtonView()
     }
     
+    // Handler for when the user swipes down the UploadView
     @objc fileprivate func handleUploadViewSwipeDown() {
+        hideNewFolderView()
         hideUploadView()
         showAddButtonView()
     }
     
+    // Handler for the when the user swipes down the AddNewFolderView
+    @objc fileprivate func handleNewFolderViewSwipeDown() {
+        hideNewFolderView()
+        hideUploadView()
+        showAddButtonView()
+    }
+    
+    // Hides the NewFolderView
+    func hideNewFolderView() {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
+            self.newFolderView.transform = CGAffineTransform(translationX: 0, y: 0)
+        }, completion: {
+            (_) in
+            self.newFolderView.isHidden = true
+        })
+    }
+    
+    // Adds the new folder into the user's database
     func addNewFolder() {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         
@@ -94,7 +131,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let databaseUpload =
             [
                 "isFolder": true,
-                "title": "NewFolder",
+                "title": newFolderView.titleTextField.text ?? "",
                 "type": "Folder",
                 "size": "0 KB",
                 "storageRef": "",
@@ -121,6 +158,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    // Hides the UploadView
     func hideUploadView() {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
             self.uploadView.transform = CGAffineTransform(translationX: 0, y: 0)
@@ -130,6 +168,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
+    // Hides the Add button
     func hideAddButtonView() {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
             self.addButtonView.transform = CGAffineTransform(translationX: 0, y: 0)
@@ -139,6 +178,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
+    // Shows the UploadView
     func showUploadView() {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
             self.uploadView.isHidden = false
@@ -146,11 +186,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
+    // Shows the Add button
     func showAddButtonView() {
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
             self.addButtonView.isHidden = false
             self.addButtonView.transform = CGAffineTransform(translationX: 0, y: -(self.view.frame.height * 0.20))
         })
+    }
+    
+    // Shows the AddNewFolderView
+    func showNewFolderTitle() {
+        self.newFolderView.isHidden = false
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
+            self.newFolderView.transform = CGAffineTransform(translationX: 0, y: -(self.uploadView.frame.height + self.newFolderView.frame.height))
+        })
+    }
+    
+    // Action for when the 'Add' button in AddNewFolderView is tapped
+    @IBAction func addFolderButton(_ sender: Any) {
+        addNewFolder()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -305,6 +359,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             let fileDescriptionVC = storyboard?.instantiateViewController(withIdentifier: "DescriptionViewController") as! DescriptionViewController
             fileDescriptionVC.downloadURL = uploadedData[indexPath.row].downloadURL
+            fileDescriptionVC.databaseRef = uploadedData[indexPath.row].databaseRef
+            fileDescriptionVC.storageRef = uploadedData[indexPath.row].storageRef
             fileDescriptionVC.descriptionArr = [("Title ", uploadedData[indexPath.row].title), ("Type ", uploadedData[indexPath.row].type), ("Size ", "\(uploadedData[indexPath.row].size)"), ("Directory ", "\(currentDirectory)/")]
             navigationController?.pushViewController(fileDescriptionVC, animated: true)
         }

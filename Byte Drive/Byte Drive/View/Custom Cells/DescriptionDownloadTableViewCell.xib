@@ -19,26 +19,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbs-Mx-VbB">
-                        <rect key="frame" x="50" y="5" width="220" height="33.5"/>
-                        <state key="normal" title="Download">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="pressedDownload:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AdA-e5-vlD"/>
-                        </connections>
-                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qib-I0-Zdu">
+                        <rect key="frame" x="93" y="7" width="134" height="30"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D14-hr-B3c">
+                                <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                <color key="backgroundColor" red="0.83921568629999999" green="0.18823529410000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="tappedDelete:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DPy-vc-ZAl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbs-Mx-VbB">
+                                <rect key="frame" x="65" y="0.0" width="69" height="30"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.26274509800000001" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Download">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedDownload:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xVV-YJ-UxL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Qbs-Mx-VbB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="8E6-rB-Lq1"/>
-                    <constraint firstAttribute="bottom" secondItem="Qbs-Mx-VbB" secondAttribute="bottom" constant="5" id="C4O-oE-6bi"/>
-                    <constraint firstItem="Qbs-Mx-VbB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="yAn-mO-KNt"/>
-                    <constraint firstAttribute="trailing" secondItem="Qbs-Mx-VbB" secondAttribute="trailing" constant="50" id="yYr-Qm-cng"/>
+                    <constraint firstItem="qib-I0-Zdu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1aE-Jq-v3F"/>
+                    <constraint firstItem="qib-I0-Zdu" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="qSo-2W-u4U"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="downloadButton" destination="Qbs-Mx-VbB" id="iG0-MO-o58"/>
+                <outlet property="downloadButton" destination="Qbs-Mx-VbB" id="O3N-LI-sOL"/>
             </connections>
             <point key="canvasLocation" x="132.80000000000001" y="154.72263868065968"/>
         </tableViewCell>

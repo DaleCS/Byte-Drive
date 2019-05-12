@@ -95,4 +95,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "goToHomeFromRegister") {
+            let fileBrowsingNavController = segue.destination as! UINavigationController
+            let firstHomeViewController = fileBrowsingNavController.viewControllers.first as! HomeViewController
+            
+            guard let userID = Auth.auth().currentUser?.uid else { return }
+            firstHomeViewController.currentPath = "FilePath/\(userID)/root"
+            firstHomeViewController.folderName = "root"
+            firstHomeViewController.currentDirectory = "root"
+        }
+    }
 }

@@ -9,9 +9,13 @@
 import UIKit
 
 class DescriptionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
 
     @IBOutlet weak var descriptionTableView: UITableView!
     
+    var databaseRef: String = String()
+    var storageRef: String = String()
     var downloadURL: String = String()
     var descriptionArr: [(String, String)] = [(String, String)]()
     
@@ -37,6 +41,8 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == descriptionArr.count) {
             let cell = descriptionTableView.dequeueReusableCell(withIdentifier: "DescriptionDownloadCell") as! DescriptionDownloadTableViewCell
+            cell.databaseRef = databaseRef
+            cell.storageRef = storageRef
             cell.downloadURL = downloadURL
             return cell
         } else {

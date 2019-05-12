@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class DescriptionDownloadTableViewCell: UITableViewCell {
     
+    var databaseRef: String = String()
+    var storageRef: String = String()
     var downloadURL: String = String()
+    
     @IBOutlet weak var downloadButton: UIButton!
     
     override func awakeFromNib() {
@@ -28,8 +32,18 @@ class DescriptionDownloadTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func pressedDownload(_ sender: Any) {
-        // TODO: Do download here:
-        // downloadURL contains the file's download URL
+    @IBAction func tappedDownload(_ sender: Any) {
+        // TODO: Do download here
+    }
+    
+    @IBAction func tappedDelete(_ sender: Any) {
+        let firebaseDatabaseRef = Database.database().reference().child(databaseRef)
+        let firebaseStorageRef = Storage.storage().reference().child(storageRef)
+        firebaseDatabaseRef.removeValue()
+        firebaseStorageRef.delete { (error) in
+            if (error != nil) {
+                print("There's an error in removing this file")
+            }
+        }
     }
 }
