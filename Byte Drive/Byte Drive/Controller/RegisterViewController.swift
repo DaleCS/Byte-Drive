@@ -90,6 +90,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     }
                 } else {
                     print("Registration Successful")
+                    // add user to user database
                     self.performSegue(withIdentifier: "goToHomeFromRegister", sender: self)
                 }
             }
