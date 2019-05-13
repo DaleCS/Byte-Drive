@@ -293,7 +293,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zmm-C6-u0a">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="633"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -336,23 +336,47 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaa-sR-x1s">
+                                <rect key="frame" x="16" y="729" width="105" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.60090752459999996" green="0.57398452060000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Download">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadPressed:" destination="DCO-DO-EEF" eventType="touchUpInside" id="1Os-Il-fQ2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2D-0U-VOo">
+                                <rect key="frame" x="280" y="728" width="79" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="View">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="viewPressed:" destination="DCO-DO-EEF" eventType="touchUpInside" id="vqi-Uq-w2l"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aOp-i3-MGQ"/>
                     </view>
                     <connections>
                         <outlet property="descriptionTableView" destination="Zmm-C6-u0a" id="JiI-Zm-UyW"/>
-                        <segue destination="68z-Kf-Iai" kind="show" identifier="toReader" id="V8Q-xF-83n"/>
+                        <outlet property="dowloadBtn" destination="vaa-sR-x1s" id="t3C-E7-gdw"/>
+                        <outlet property="viewBtn" destination="X2D-0U-VOo" id="39s-bN-x79"/>
+                        <segue destination="68z-Kf-Iai" kind="show" identifier="toReader" id="yoG-Xv-qnr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZm-bS-MzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3570" y="21"/>
+            <point key="canvasLocation" x="3568.8000000000002" y="20.689655172413794"/>
         </scene>
         <!--Reader View Controller-->
         <scene sceneID="sde-1f-trI">
             <objects>
-                <viewController storyboardIdentifier="Reader" id="68z-Kf-Iai" customClass="ReaderViewController" customModule="Byte_Drive" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="toReader" id="68z-Kf-Iai" customClass="ReaderViewController" customModule="Byte_Drive" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wpE-em-dUz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -366,13 +390,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="O5u-eb-Od4"/>
                     </view>
+                    <navigationItem key="navigationItem" id="QSo-zb-kHq"/>
                     <connections>
                         <outlet property="webView" destination="hvP-d0-e0g" id="Lqm-SP-IK3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLR-7K-VL0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4572" y="21.428571428571431"/>
+            <point key="canvasLocation" x="3532" y="794"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q4Z-Lt-ttd">
@@ -407,6 +432,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="egc-9P-3cS"/>
-        <segue reference="dBx-ZW-JOY"/>
+        <segue reference="Frh-W6-mrg"/>
     </inferredMetricsTieBreakers>
 </document>

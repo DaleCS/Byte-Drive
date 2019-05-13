@@ -11,6 +11,8 @@ import UIKit
 class DescriptionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var descriptionTableView: UITableView!
+    @IBOutlet weak var dowloadBtn: UIButton!
+    @IBOutlet weak var viewBtn: UIButton!
     
     var downloadURL: String = String()
     var descriptionArr: [(String, String)] = [(String, String)]()
@@ -28,6 +30,10 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         descriptionTableView.reloadData()
         
         descriptionTableView.register(UINib(nibName: "DescriptionDownloadTableViewCell",  bundle: nil  ), forCellReuseIdentifier: "DescriptionDownloadCell")
+        dowloadBtn.layer.cornerRadius = 5
+        viewBtn.layer.cornerRadius = 5
+        viewBtn.isEnabled = false
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,5 +53,13 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
             cell.value.text = "\(descriptionArr[indexPath.row].1)"
             return cell
         }
+    }
+    
+    @IBAction func downloadPressed(_ sender: Any) {
+        viewBtn.isEnabled = true
+        viewBtn.backgroundColor = #colorLiteral(red: 0.6009075246, green: 0.5739845206, blue: 1, alpha: 1)
+    }
+    @IBAction func viewPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "toReader", sender: self)
     }
 }
