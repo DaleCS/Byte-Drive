@@ -347,62 +347,63 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         
-        guard let userID = Auth.auth().currentUser?.uid else { return }
-        let fileName = fileURL.lastPathComponent
-        
-        let verifyUploadAlertController = UIAlertController(title: "Upload \(fileName) to this directory?", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "Confirm", style: .default) {
-            (handler) in
+        if let userID = Auth.auth().currentUser?.uid  {
+            let fileName = fileURL.lastPathComponent
             
-            var currentFolder = self.currentPath
-            currentFolder.removeSubrange(currentFolder.startIndex...currentFolder.lastIndex(of: "/")!)
-            let storageRef = Storage.storage().reference().child("\(userID)/\(self.currentDirectory)/\(fileName)")
-            let databaseRef = Database.database().reference().child("\(self.currentPath)")
-            
-            let _ = storageRef.putFile(from: fileURL, metadata: nil) {
-                (metaData, error) in
-                if (error != nil) {
-                    print("Error: \(String(describing: error))")
-                    return
-                }
-                if (metaData == nil) {
-                    print("Error: Meta data was nil")
-                    return
-                }
-                storageRef.downloadURL(completion: {
-                    (URL, Error) in
-                    if (Error != nil) {
-                        print(Error!.localizedDescription)
-                    } else if (URL != nil){
-                        let downloadURL = URL?.absoluteString
-                        
-                        let newPathForThisFile = databaseRef.childByAutoId()
-                        var newPathForThisFileStr = newPathForThisFile.url
-                        newPathForThisFileStr.removeSubrange(newPathForThisFileStr.startIndex..<newPathForThisFileStr.index(newPathForThisFileStr.startIndex, offsetBy: 34))
-                        
-                        let databaseUpload =
-                            [
-                                "isFolder": false,
-                                "title": fileName,
-                                "type": "\(metaData!.contentType ?? "")",
-                                "size": "\(String(format: "%.2f", Double(metaData!.size)/1000)) KB",
-                                "storageRef": "\(userID)/\(self.currentDirectory)/\(fileName)",
-                                "databaseRef": "\(newPathForThisFileStr)",
-                                "folderPath": "",
-                                "downloadURL": downloadURL
-                            ] as [String : Any?]
-                        newPathForThisFile.setValue(databaseUpload)
+            let verifyUploadAlertController = UIAlertController(title: "Upload \(fileName) to this directory?", message: nil, preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: "Confirm", style: .default) {
+                (handler) in
+                
+                var currentFolder = self.currentPath
+                currentFolder.removeSubrange(currentFolder.startIndex...currentFolder.lastIndex(of: "/")!)
+                let storageRef = Storage.storage().reference().child("\(userID)/\(self.currentDirectory)/\(fileName)")
+                let databaseRef = Database.database().reference().child("\(self.currentPath)")
+                
+                let _ = storageRef.putFile(from: fileURL, metadata: nil) {
+                    (metaData, error) in
+                    if (error != nil) {
+                        print("Error: \(String(describing: error))")
+                        return
                     }
-                })
+                    if (metaData == nil) {
+                        print("Error: Meta data was nil")
+                        return
+                    }
+                    storageRef.downloadURL(completion: {
+                        (URL, Error) in
+                        if (Error != nil) {
+                            print(Error!.localizedDescription)
+                        } else if (URL != nil){
+                            let downloadURL = URL?.absoluteString
+                            
+                            let newPathForThisFile = databaseRef.childByAutoId()
+                            var newPathForThisFileStr = newPathForThisFile.url
+                            newPathForThisFileStr.removeSubrange(newPathForThisFileStr.startIndex..<newPathForThisFileStr.index(newPathForThisFileStr.startIndex, offsetBy: 34))
+                            
+                            let databaseUpload =
+                                [
+                                    "isFolder": false,
+                                    "title": fileName,
+                                    "type": "\(metaData!.contentType ?? "")",
+                                    "size": "\(String(format: "%.2f", Double(metaData!.size)/1000)) KB",
+                                    "storageRef": "\(userID)/\(self.currentDirectory)/\(fileName)",
+                                    "databaseRef": "\(newPathForThisFileStr)",
+                                    "folderPath": "",
+                                    "downloadURL": downloadURL
+                                    ] as [String : Any?]
+                            newPathForThisFile.setValue(databaseUpload)
+                        }
+                    })
+                }
             }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+                handler in
+                // Do nothing as DocumentPicker closes
+            }
+            
+            verifyUploadAlertController.addAction(confirmAction)
+            verifyUploadAlertController.addAction(cancelAction)
+            self.present(verifyUploadAlertController, animated: true)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
-            handler in
-            // Do nothing as DocumentPicker closes
-        }
-        
-        verifyUploadAlertController.addAction(confirmAction)
-        verifyUploadAlertController.addAction(cancelAction)
-        self.present(verifyUploadAlertController, animated: true)
     }
 }

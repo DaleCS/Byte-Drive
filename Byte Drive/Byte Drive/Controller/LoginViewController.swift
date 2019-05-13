@@ -37,7 +37,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDel
     
     override func viewDidAppear(_ animated: Bool) {
         if let _ = Auth.auth().currentUser {
-            print(userdefault.bool(forKey: "usersignin") == true)
             performSegue(withIdentifier: "toHomeFromLogin", sender: self)
         }
     }
@@ -120,5 +119,4 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDel
             firstHomeViewController.currentDirectory = "root"
         }
     }
-    
 }
