@@ -32,7 +32,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDel
         super.viewDidLoad()
         usernameField.delegate = self
         passwordField.delegate = self
-
+// The next 2 lines of code  were borrowed from https://www.youtube.com/watch?v=3MljDikYaG4
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signInSilently()
     }

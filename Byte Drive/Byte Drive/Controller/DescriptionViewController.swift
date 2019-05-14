@@ -63,7 +63,10 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         viewBtn.isEnabled = true
         viewBtn.backgroundColor = #colorLiteral(red: 0.6009075246, green: 0.5739845206, blue: 1, alpha: 1)
     }
+    
     @IBAction func viewPressed(_ sender: Any) {
+// This portion of code was borrowed from https://www.youtube.com/watch?v=xQmZSKxOYvs&t=358s
+//*********
         self.URL = downloadURL
         self.performSegue(withIdentifier: "toReader", sender: self)
     }
@@ -72,4 +75,5 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         let vc = segue.destination as! ReaderViewController
         vc.dURL = self.URL
     }
+//*********
 }
