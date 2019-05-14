@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		04D3CCC1347CD3E59AFECE6B /* Pods_BTNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FFDA33353CB118ABFC7CA1 /* Pods_BTNotifications.framework */; };
+		35C3D28C228A6695008E089A /* SharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C3D28B228A6695008E089A /* SharingViewController.swift */; };
+		35C3D292228A686F008E089A /* ShareViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C3D291228A686F008E089A /* ShareViewCell.swift */; };
 		5309FA03227C2DAE006366B3 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309FA02227C2DAE006366B3 /* File.swift */; };
 		531769462286226900DAB223 /* AddNewFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531769452286226900DAB223 /* AddNewFolderView.swift */; };
 		5317694C2287D61A00DAB223 /* ReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5317694B2287D61A00DAB223 /* ReaderViewController.swift */; };
@@ -61,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		246F4384BD23F569F1194F59 /* Pods-Byte Drive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Byte Drive.debug.xcconfig"; path = "Target Support Files/Pods-Byte Drive/Pods-Byte Drive.debug.xcconfig"; sourceTree = "<group>"; };
+		35C3D28B228A6695008E089A /* SharingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingViewController.swift; sourceTree = "<group>"; };
+		35C3D291228A686F008E089A /* ShareViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewCell.swift; sourceTree = "<group>"; };
 		369A467245D69A02C3C14552 /* Pods-BTNotifications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTNotifications.release.xcconfig"; path = "Target Support Files/Pods-BTNotifications/Pods-BTNotifications.release.xcconfig"; sourceTree = "<group>"; };
 		5309FA02227C2DAE006366B3 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		531769452286226900DAB223 /* AddNewFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFolderView.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				531ED5FF227F99BE002F2416 /* DescriptionCell.xib */,
 				531ED601227F9AFD002F2416 /* FileCell.swift */,
 				531ED602227F9AFD002F2416 /* FileCell.xib */,
+				35C3D291228A686F008E089A /* ShareViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				53D8121A227EC46600CFB6CD /* DescriptionViewController.swift */,
 				53A1282D2282B13E0042E4A8 /* AboutViewController.swift */,
 				5317694B2287D61A00DAB223 /* ReaderViewController.swift */,
+				35C3D28B228A6695008E089A /* SharingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -449,6 +455,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				539FE059226BB2E500EC0860 /* LoginViewController.swift in Sources */,
+				35C3D292228A686F008E089A /* ShareViewCell.swift in Sources */,
+				35C3D28C228A6695008E089A /* SharingViewController.swift in Sources */,
 				53D8121B227EC46600CFB6CD /* DescriptionViewController.swift in Sources */,
 				5309FA03227C2DAE006366B3 /* File.swift in Sources */,
 				53F9AE9B22815055004382B8 /* UploadView.swift in Sources */,

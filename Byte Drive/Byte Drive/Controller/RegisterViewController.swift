@@ -90,6 +90,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     }
                 } else {
                     print("Registration Successful")
+                    // add user email to database
+                    guard let userID = Auth.auth().currentUser?.uid else { return }
+                    let email = Auth.auth().currentUser?.email! as! String
+                    let dbRef = Database.database().reference().child("FilePath/\(userID)")
+                    let dbUpload = [
+                        "email": email
+                    ] as [String : Any?]
+                    dbRef.setValue(dbUpload)
                     self.performSegue(withIdentifier: "goToHomeFromRegister", sender: self)
                 }
             }
