@@ -11,6 +11,8 @@
 //  https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SchedulingandHandlingLocalNotifications.html#//apple_ref/doc/uid/TP40008194-CH5-SW5
 //  And
 //  From Youtube video by user CodeWithChris: https://www.youtube.com/watch?v=jJUm1VBnR_U
+//  And
+//  From a YouTube video by Public Void Geek https://www.youtube.com/watch?v=jAUPRAMSc6c&t=755s
 
 import UIKit
 import UserNotifications
@@ -32,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         return true
     }
-    
+// This portion of the code was borrowed from https://www.youtube.com/watch?v=jAUPRAMSc6c&t=755s
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)

@@ -10,9 +10,9 @@
 //  And
 //  https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SchedulingandHandlingLocalNotifications.html#//apple_ref/doc/uid/TP40008194-CH5-SW5
 //  And
-//  https://www.youtube.com/watch?v=3MljDikYaG4
-//And
-//  https://www.youtube.com/watch?v=jAUPRAMSc6c&t=755s
+//  From a YouTube video by Swift tutorials: https://www.youtube.com/watch?v=3MljDikYaG4
+//  And
+//  From a YouTube video by Public Void Geek: https://www.youtube.com/watch?v=jAUPRAMSc6c&t=755s
 
 import UIKit
 import Firebase
