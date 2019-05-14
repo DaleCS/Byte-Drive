@@ -37,6 +37,8 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         descriptionTableView.register(UINib(nibName: "DescriptionDownloadTableViewCell",  bundle: nil  ), forCellReuseIdentifier: "DescriptionDownloadCell")
         
         viewBtn.isEnabled = false
+        viewBtn.layer.cornerRadius = 5
+        downloadBtn.layer.cornerRadius = 5
     }
     
     
