@@ -12,7 +12,7 @@ import WebKit
 // This View Controller displays the contents of a file using web views
 class ReaderViewController: UIViewController {
     
-    var downloadURL: String = String()
+    var dURL = ""
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -23,7 +23,7 @@ class ReaderViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let url:URL = URL(string: downloadURL)!
+        let url:URL = URL(string: dURL)!
         let urlRequest:URLRequest = URLRequest(url: url)
         webView.load(urlRequest)
     }

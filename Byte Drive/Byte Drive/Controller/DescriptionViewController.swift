@@ -12,11 +12,15 @@ import Firebase
 class DescriptionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var descriptionTableView: UITableView!
+    @IBOutlet weak var downloadBtn: UIButton!
+    @IBOutlet weak var viewBtn: UIButton!
+    
     
     var databaseRef: String = String()
     var storageRef: String = String()
     var downloadURL: String = String()
     var descriptionArr: [(String, String)] = [(String, String)]()
+    var URL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,8 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         descriptionTableView.reloadData()
         
         descriptionTableView.register(UINib(nibName: "DescriptionDownloadTableViewCell",  bundle: nil  ), forCellReuseIdentifier: "DescriptionDownloadCell")
+        
+        viewBtn.isEnabled = false
     }
     
     
@@ -52,18 +58,35 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    @IBAction func downloadTapped(_ sender: Any) {
-        // TODO: Do download here
+//    @IBAction func downloadTapped(_ sender: Any) {
+//        // TODO: Do download here
+//        //viewBtn.isEnabled = true
+//        //viewBtn.backgroundColor = #colorLiteral(red: 0.3045640588, green: 0.2646819353, blue: 0.664798677, alpha: 1)
+//    }
+//
+//    @IBAction func viewTapped(_ sender: Any) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let readerVC = storyboard.instantiateViewController(withIdentifier: "ReaderViewController") as! ReaderViewController
+//        readerVC.downloadURL = downloadURL
+//        if let navController = self.navigationController {
+//            navController.pushViewController(readerVC, animated: true)
+//        }
+//    }
+    
+    @IBAction func pressedDownload(_ sender: Any) {
+        viewBtn.isEnabled = true
+        viewBtn.backgroundColor = #colorLiteral(red: 0.3045640588, green: 0.2646819353, blue: 0.664798677, alpha: 1)
+    }
+    @IBAction func pressedView(_ sender: Any) {
+        self.URL = downloadURL
+        self.performSegue(withIdentifier: "toReader", sender: self)
     }
     
-    @IBAction func viewTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let readerVC = storyboard.instantiateViewController(withIdentifier: "ReaderViewController") as! ReaderViewController
-        readerVC.downloadURL = downloadURL
-        if let navController = self.navigationController {
-            navController.pushViewController(readerVC, animated: true)
-        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! ReaderViewController
+        vc.dURL = self.URL
     }
+    
     
     @IBAction func deleteTapped(_ sender: Any) {
         let firebaseDataRef = Database.database().reference().child(databaseRef)
