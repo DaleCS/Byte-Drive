@@ -37,6 +37,7 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         dowloadBtn.layer.cornerRadius = 5
         viewBtn.layer.cornerRadius = 5
         viewBtn.isEnabled = false
+        viewBtn.backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         
     }
     
