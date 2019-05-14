@@ -38,7 +38,7 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
         
         viewBtn.isEnabled = false
         viewBtn.layer.cornerRadius = 5
-        downloadBtn.layer.cornerRadius = 5
+        downloadBtn.layer.cornerRadius = 5 
     }
     
     
