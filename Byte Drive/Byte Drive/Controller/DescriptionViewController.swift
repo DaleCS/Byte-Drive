@@ -53,10 +53,6 @@ class DescriptionViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func downloadTapped(_ sender: Any) {
-        // TODO: Do download here
-    }
-    
-    @IBAction func viewTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let readerVC = storyboard.instantiateViewController(withIdentifier: "ReaderViewController") as! ReaderViewController
         readerVC.downloadURL = downloadURL

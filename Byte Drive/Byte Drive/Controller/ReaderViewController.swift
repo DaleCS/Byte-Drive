@@ -5,6 +5,8 @@
 //  Created by Jonathan Naraja on 5/7/19.
 //  Copyright © 2019 Dale Christian Seen. All rights reserved.
 //
+//  Note: Some of the code in this file are taken from
+//  https://www.youtube.com/watch?v=xQmZSKxOYvs&t=358s
 
 import UIKit
 import WebKit
